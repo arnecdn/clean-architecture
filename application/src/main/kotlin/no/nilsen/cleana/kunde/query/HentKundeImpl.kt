@@ -4,11 +4,12 @@ import no.nilsen.cleana.kunde.Kunde
 
 class HentKundeImpl(var repo: KundeQueryReporitory) : HentKunde{
     override fun hentAlle(): List<HentKundeDto> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return repo.hentAlle().map { k -> HentKundeDto(id=k.id, navn=k.navn) }
     }
 
     override fun hent(id: Int): HentKundeDto {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val k = repo.hent(id)
+        return HentKundeDto(id=k.id, navn=k.navn)
     }
 
 

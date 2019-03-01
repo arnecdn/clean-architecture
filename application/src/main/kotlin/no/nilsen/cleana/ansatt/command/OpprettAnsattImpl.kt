@@ -1,8 +1,10 @@
 package no.nilsen.cleana.ansatt.command
 
+import no.nilsen.cleana.ansatt.Ansatt
+
 class OpprettAnsattImpl(val repo: AnsattCommandRepository) : OpprettAnsatt{
-    override fun opprett(ansatt: OpprettAnsattDto) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun opprett(a: OpprettAnsattDto) {
+        repo.opprett(ansatt = Ansatt(navn=a.navn))
     }
 
 }
