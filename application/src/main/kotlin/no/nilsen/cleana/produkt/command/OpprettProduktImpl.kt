@@ -1,8 +1,10 @@
 package no.nilsen.cleana.ansatt.command
 
-class OpprettProduktImpl(val repo: ProduktCommandRepository) : OpprettProdukt{
+import no.nilsen.cleana.produkt.Produkt
+
+class OpprettProduktImpl(val repo: ProduktCommandRepository) : OpprettProdukt {
     override fun opprett(produkt: OpprettProduktDto) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        repo.opprett(Produkt(beskrivelse = produkt.beskrivelse, pris = produkt.pris))
     }
 
 }

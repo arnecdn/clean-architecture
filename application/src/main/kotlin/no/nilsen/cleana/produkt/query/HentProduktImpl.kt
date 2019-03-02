@@ -2,12 +2,11 @@ package no.nilsen.cleana.ansatt.query
 
 class HentProduktImpl(var repo: ProduktQueryReporitory) : HentProdukt {
     override fun hentAlle(): List<HentProduktDto> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return repo.hentAlle().map { p -> HentProduktDto(p.id, p.beskrivelse, p.pris) }
     }
 
     override fun hent(id: Int): HentProduktDto {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val hent = repo.hent(id)
+        return HentProduktDto(hent.id, hent.beskrivelse, hent.pris)
     }
-
-
 }

@@ -1,4 +1,6 @@
 package no.nilsen.cleana.ansatt.command
 
-class OpprettProduktDto(val navn: String) {
+import java.math.BigDecimal
+
+class OpprettProduktDto(val id: Int = 0, val beskrivelse: String, val pris: BigDecimal) {
 }

@@ -1,16 +1,25 @@
 package no.nilsen.cleana.salg.query
 
-class HentSalgImpl : HentSalg {
+import no.nilsen.cleana.salg.Salg
+
+class HentSalgImpl(val repo: SalgQueryRepository) : HentSalg {
+    val salgMapper: (Salg) -> HentSalgDto = { salg -> HentSalgDto(salg.id, salg.antall, salg.totalPris(), salg.selger, salg.kunde, salg.produkt) }
+
+    override fun hentAlle(): List<HentSalgDto> {
+        return repo.hentAlleSalg().map { s -> salgMapper(s) }
+    }
+
     override fun hent(id: Int): HentSalgDto {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val salg = repo.hent(id)
+        return HentSalgDto(salg!!.id, salg.antall, salg.totalPris(), salg.selger, salg.kunde, salg.produkt)
     }
 
     override fun hentSalgPerKunde(kundeId: Int): List<HentSalgDto> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return repo.hentSalgPerKunde(kundeId).map { s -> salgMapper(s) }
     }
 
     override fun hentSalgPerAnsatt(ansattId: Int): List<HentSalgDto> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return repo.hentSalgPerAnsatt(ansattId).map { s -> salgMapper(s) }
     }
 
 }

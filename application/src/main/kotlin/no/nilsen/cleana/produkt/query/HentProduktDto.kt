@@ -1,4 +1,6 @@
 package no.nilsen.cleana.ansatt.query
 
-class HentProduktDto (val id: Int, val navn: String){
+import java.math.BigDecimal
+
+class HentProduktDto(val id: Int, val beskrivelse: String, pris: BigDecimal) {
 }

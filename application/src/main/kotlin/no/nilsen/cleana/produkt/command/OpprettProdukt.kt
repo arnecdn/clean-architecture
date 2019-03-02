@@ -1,5 +1,5 @@
 package no.nilsen.cleana.ansatt.command
 
-interface OpprettProdukt{
+interface OpprettProdukt {
     fun opprett(produkt: OpprettProduktDto)
 }

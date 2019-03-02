@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertTrue
 
 internal class OpprettKundeImplTest {
-    val repo = TestKundeCommandRepo()
-
+    val repo = KundeCommandRepositoryMap()
 
     val opprettKunde = OpprettKundeImpl(repo)
 
@@ -19,22 +18,23 @@ internal class OpprettKundeImplTest {
         val kundeNavn = "Brei Flabb"
 
         opprettKunde.opprett(OpprettKundeDto(kundeNavn))
-        val hentetKunde = repo.hent()
+        val hentetKunde = repo.hent(1)
 
 
-        assertTrue(hentetKunde.navn.contentEquals(kundeNavn))
+        assertTrue(hentetKunde!!.navn.contentEquals(kundeNavn))
     }
 
-    class TestKundeCommandRepo : KundeCommandRepository {
+    class KundeCommandRepositoryMap : KundeCommandRepository {
 
-        public lateinit var kunde: Kunde
+        var kunder: MutableMap<Int, Kunde> = hashMapOf()
 
         override fun opprett(k: Kunde) {
-            kunde = k
+            val nyKunde = Kunde(kunder.size + 1, k.navn)
+            kunder.put(nyKunde.id, nyKunde)
         }
 
-        fun hent(): Kunde {
-            return kunde
+        fun hent(id: Int): Kunde? {
+            return kunder.get(id)
         }
 
     }

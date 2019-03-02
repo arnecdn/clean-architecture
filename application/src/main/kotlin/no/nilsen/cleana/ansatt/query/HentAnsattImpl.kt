@@ -1,12 +1,13 @@
 package no.nilsen.cleana.ansatt.query
 
-class HentAnsattImpl(var repo: AnsattQueryReporitory) : HentAnsatt{
+class HentAnsattImpl(var repo: AnsattQueryReporitory) : HentAnsatt {
     override fun hentAlle(): List<HentAnsattDto> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return repo.hentAlle().map { a -> HentAnsattDto(a.id, a.navn) }
     }
 
     override fun hent(id: Int): HentAnsattDto {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val hent = repo.hent(id)
+        return HentAnsattDto(hent.id, hent.navn)
     }
 
 
