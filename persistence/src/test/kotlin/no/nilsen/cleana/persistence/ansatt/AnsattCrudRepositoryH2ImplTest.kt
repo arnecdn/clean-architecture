@@ -2,6 +2,9 @@ package no.nilsen.cleana.persistence.ansatt
 
 import junit.framework.Assert.assertTrue
 import no.nilsen.cleana.domain.ansatt.Ansatt
+import no.nilsen.cleana.persistence.kunde.KundeEntitet
+import no.nilsen.cleana.persistence.kunde.ProduktEntitet
+import no.nilsen.cleana.persistence.salg.SalgEntitet
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,7 +17,7 @@ import javax.transaction.Transactional
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
 @Transactional
-@ContextConfiguration(classes = arrayOf(PersistenceConfig::class, AnsattEntitet::class, AnsattCommandRepositoryH2Impl::class))
+@ContextConfiguration(classes = arrayOf(PersistenceConfig::class, AnsattEntitet::class, AnsattCommandRepositoryH2Impl::class, SalgEntitet::class, ProduktEntitet::class, KundeEntitet::class))
 open class AnsattCrudRepositoryH2ImplTest {
 
 
