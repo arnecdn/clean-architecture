@@ -4,10 +4,11 @@ import no.nilsen.cleana.domain.ansatt.Ansatt
 import no.nilsen.cleana.application.ansatt.command.AnsattCommandRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
+import org.springframework.stereotype.Service
 
 
-@Repository
-class AnsattCommandRepositoryH2Impl : AnsattCommandRepository {
+@Service
+open class AnsattCommandRepositoryH2Impl : AnsattCommandRepository {
 
     @Autowired
     lateinit var ansattCrudRepo : AnsattCommandRepositoryH2
