@@ -15,7 +15,7 @@ import javax.transaction.Transactional
 @DataJpaTest
 @Transactional
 @ContextConfiguration(classes = arrayOf(PersistenceConfig::class, AnsattEntitet::class, AnsattCommandRepositoryH2Impl::class))
-open class AnsattCommandRepositoryH2ImplTest {
+open class AnsattCrudRepositoryH2ImplTest {
 
 
     @Autowired

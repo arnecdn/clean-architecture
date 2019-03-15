@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 
- interface AnsattCommandRepositoryH2 : CrudRepository<AnsattEntitet, Int> {
+ interface AnsattCrudRepositoryH2 : CrudRepository<AnsattEntitet, Int> {
 
 
 }
