@@ -18,7 +18,7 @@ import javax.transaction.Transactional
 @ExtendWith(SpringExtension::class)
 @DataJpaTest
 @Transactional
-@ContextConfiguration(classes = arrayOf(PersistenceConfig::class, AnsattEntitet::class, AnsattCommandRepositoryH2Impl::class, SalgEntitet::class, ProduktEntitet::class, KundeEntitet::class))
+@ContextConfiguration(classes = arrayOf(PersistenceConfig::class, AnsattCommandRepositoryH2Impl::class))
 open class AnsattCrudRepositoryH2ImplTest {
 
 
