@@ -5,6 +5,6 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "Produkt")
-open class ProduktEntitet(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int = 0, val beskrivelse: String, val pris: BigDecimal) {
+open class ProduktEntitet(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int = 0, val beskrivelse: String="", val pris: BigDecimal= BigDecimal.ZERO) {
 
 }

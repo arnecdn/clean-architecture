@@ -7,6 +7,6 @@ import javax.persistence.*
 
 @Entity
 @Table(name="Salg")
-open class SalgEntitet(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int = 0, val antall: Long, val totalPris: BigDecimal, val selger: Int, val kunde: Int, val produkt: Int) {
+open class SalgEntitet(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int = 0, val antall: Long=0, val totalPris: BigDecimal = BigDecimal.ZERO, val selger: Int=0, val kunde: Int=0, val produkt: Int=0) {
 
 }

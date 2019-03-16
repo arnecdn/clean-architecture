@@ -2,6 +2,7 @@ package no.nilsen.cleana.persistence.ansatt
 
 import junit.framework.Assert.assertTrue
 import no.nilsen.cleana.domain.ansatt.Ansatt
+import no.nilsen.cleana.persistence.PersistenceConfig
 import no.nilsen.cleana.persistence.kunde.KundeEntitet
 import no.nilsen.cleana.persistence.kunde.ProduktEntitet
 import no.nilsen.cleana.persistence.salg.SalgEntitet

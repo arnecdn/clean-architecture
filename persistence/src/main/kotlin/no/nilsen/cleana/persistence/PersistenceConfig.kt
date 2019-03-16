@@ -1,4 +1,4 @@
-package no.nilsen.cleana.persistence.ansatt
+package no.nilsen.cleana.persistence
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.domain.EntityScan
@@ -18,7 +18,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
 
 
 @Configuration
-@EnableJpaRepositories(basePackages = arrayOf("no.nilsen.cleana"))
+@EnableJpaRepositories(basePackages = arrayOf("no.nilsen.cleana.persistence"))
 @EntityScan
 open class PersistenceConfig {
 
