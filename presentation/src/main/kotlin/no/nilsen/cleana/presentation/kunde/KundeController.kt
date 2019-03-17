@@ -6,9 +6,7 @@ import no.nilsen.cleana.ansatt.command.OpprettKundeImpl
 import no.nilsen.cleana.ansatt.query.HentKundeImpl
 import no.nilsen.cleana.ansatt.query.KundeQueryReporitory
 import no.nilsen.cleana.application.ansatt.command.OpprettKundeView
-import no.nilsen.cleana.application.ansatt.command.OpprettProduktView
 import no.nilsen.cleana.application.ansatt.query.HentKundeView
-import no.nilsen.cleana.application.ansatt.query.HentProduktView
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
@@ -31,13 +29,13 @@ open class KundeController {
     }
 
     @GetMapping("/kunde", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    fun hentAlleKunder (): List<HentKundeView> {
+    fun hentAlleKunder(): List<HentKundeView> {
         val kundeHenter = HentKundeImpl(kundeQueryReporitory)
-        return kundeHenter .hentAlle().map { a-> HentKundeView(a.id, a.navn) }
+        return kundeHenter.hentAlle().map { a -> HentKundeView(a.id, a.navn) }
     }
 
 
-    @PostMapping("/kunde/",  consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @PostMapping("/kunde/", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun opprett(@RequestBody opprettKundeView: OpprettKundeView) {
         val kundeOppretter = OpprettKundeImpl(kundeCommandRepository)
         kundeOppretter.opprett(OpprettKundeDto(opprettKundeView.navn))

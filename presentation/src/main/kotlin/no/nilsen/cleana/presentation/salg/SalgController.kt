@@ -22,9 +22,8 @@ open class SalgController {
 
     @GetMapping("/salg/{id}", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun hentSalg(@PathVariable id: Int): HentSalgView {
-        val hentSalg = HentSalgImpl(salgQueryReporitory)
-        val a = hentSalg.hent(id)
-        return HentSalgView(a.id, a.antall, a.totalPris, a.selger, a.kunde, a.produkt)
+        val salg = HentSalgImpl(salgQueryReporitory).hent(id)
+        return HentSalgView(salg.id, salg.antall, salg.totalPris, salg.selger, salg.kunde, salg.produkt)
     }
 
     @GetMapping("/salg", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
@@ -33,8 +32,14 @@ open class SalgController {
     }
 
 
+    @GetMapping("/salg/kunde/{id}", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun hentAlleSalgPrKunde(@PathVariable id: Int): List<HentSalgView> {
+        return HentSalgImpl(salgQueryReporitory).hentSalgPerKunde(id).map { a -> HentSalgView(a.id, a.antall, a.totalPris, a.selger, a.kunde, a.produkt) }
+    }
+
+
     @PostMapping("/salg/", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun opprett(@RequestBody opprettSalgView: OpprettSalgView) {
-        OpprettSalgImpl(salgCommandRepository).opprett(OpprettSalgDto(antall = opprettSalgView.antall, ansattId = opprettSalgView.selger.id, kundeId = opprettSalgView.kunde.id, produktId = opprettSalgView.produkt.id))
+        OpprettSalgImpl(salgCommandRepository).opprett(OpprettSalgDto(antall = opprettSalgView.antall, ansattId = opprettSalgView.selger, kundeId = opprettSalgView.kunde, produktId = opprettSalgView.produkt))
     }
 }

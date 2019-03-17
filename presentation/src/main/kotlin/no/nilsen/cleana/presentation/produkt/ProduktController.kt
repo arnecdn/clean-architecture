@@ -34,15 +34,14 @@ open class ProduktController {
     }
 
     @GetMapping("/produkt", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    fun hentAlleProdukter (): List<HentProduktView> {
-        return HentProduktImpl(produktQueryReporitory).
-                hentAlle().map { a-> HentProduktView(a.id, a.beskrivelse, a.pris) }
+    fun hentAlleProdukter(): List<HentProduktView> {
+        return HentProduktImpl(produktQueryReporitory).hentAlle().map { a -> HentProduktView(a.id, a.beskrivelse, a.pris) }
     }
 
 
-    @PostMapping("/produkt/",  consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @PostMapping("/produkt/", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun opprett(@RequestBody opprettProduktView: OpprettProduktView) {
         val ProduktOppretter = OpprettProduktImpl(produktCommandRepository)
-        ProduktOppretter.opprett(OpprettProduktDto(beskrivelse = opprettProduktView.beskrivelse, pris =opprettProduktView.pris))
+        ProduktOppretter.opprett(OpprettProduktDto(beskrivelse = opprettProduktView.beskrivelse, pris = opprettProduktView.pris))
     }
 }
