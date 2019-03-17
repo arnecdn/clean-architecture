@@ -1,6 +1,6 @@
 package no.nilsen.cleana.application.salg.command
 
-import no.nilsen.cleana.domain.salg.Salg
+import no.nilsen.cleana.salg.Salg
 
 interface SalgCommandRepository {
     fun opprett(salg: Salg)

@@ -5,7 +5,7 @@ import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.hasSize
 import no.nilsen.cleana.ansatt.query.HentKundeImpl
 import no.nilsen.cleana.ansatt.query.KundeQueryReporitory
-import no.nilsen.cleana.domain.kunde.Kunde
+import no.nilsen.cleana.kunde.Kunde
 import org.junit.jupiter.api.Test
 import java.util.*
 

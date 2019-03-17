@@ -2,9 +2,9 @@ package no.nilsen.cleana.persistence.kunde
 
 import no.nilsen.cleana.application.salg.query.SalgQueryRepository
 import no.nilsen.cleana.domain.ansatt.Ansatt
-import no.nilsen.cleana.domain.kunde.Kunde
-import no.nilsen.cleana.domain.produkt.Produkt
-import no.nilsen.cleana.domain.salg.Salg
+import no.nilsen.cleana.kunde.Kunde
+import no.nilsen.cleana.produkt.Produkt
+import no.nilsen.cleana.salg.Salg
 import no.nilsen.cleana.persistence.ansatt.AnsattCrudRepositoryH2
 import no.nilsen.cleana.persistence.salg.SalgEntitet
 import org.springframework.beans.factory.annotation.Autowired

@@ -10,5 +10,4 @@ class HentAnsattImpl(var repo: AnsattQueryReporitory) : HentAnsatt {
         return HentAnsattDto(hent.id, hent.navn)
     }
 
-
 }

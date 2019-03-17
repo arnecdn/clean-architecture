@@ -1,6 +1,6 @@
 package no.nilsen.cleana.application.salg.command
 
-import no.nilsen.cleana.domain.salg.Salg
+import no.nilsen.cleana.salg.Salg
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 

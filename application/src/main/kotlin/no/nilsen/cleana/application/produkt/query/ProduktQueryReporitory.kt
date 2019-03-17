@@ -1,6 +1,6 @@
 package no.nilsen.cleana.ansatt.query
 
-import no.nilsen.cleana.domain.produkt.Produkt
+import no.nilsen.cleana.produkt.Produkt
 
 interface ProduktQueryReporitory {
     fun hentAlle(): List<Produkt>

@@ -1,6 +1,6 @@
 package no.nilsen.cleana.ansatt.command
 
-import no.nilsen.cleana.domain.kunde.Kunde
+import no.nilsen.cleana.kunde.Kunde
 
 class OpprettKundeImpl(val repo: KundeCommandRepository) : OpprettKunde {
 

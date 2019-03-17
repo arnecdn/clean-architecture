@@ -1,4 +1,4 @@
-package no.nilsen.cleana.domain.produkt
+package no.nilsen.cleana.produkt
 
 import java.math.BigDecimal
 

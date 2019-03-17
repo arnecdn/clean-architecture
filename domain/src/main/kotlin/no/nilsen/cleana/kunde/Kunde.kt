@@ -1,3 +1,3 @@
-package no.nilsen.cleana.domain.kunde
+package no.nilsen.cleana.kunde
 
 class Kunde(val id: Int=0, val navn: String)

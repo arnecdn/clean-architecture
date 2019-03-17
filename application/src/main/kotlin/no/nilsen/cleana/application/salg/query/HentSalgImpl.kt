@@ -1,6 +1,6 @@
 package no.nilsen.cleana.application.salg.query
 
-import no.nilsen.cleana.domain.salg.Salg
+import no.nilsen.cleana.salg.Salg
 
 class HentSalgImpl(val repo: SalgQueryRepository) : HentSalg {
     val salgMapper: (Salg) -> HentSalgDto = { salg -> HentSalgDto(salg.id, salg.antall, salg.totalPris(), salg.selger, salg.kunde, salg.produkt) }

@@ -6,7 +6,7 @@ import com.natpryce.hamkrest.hasSize
 import com.natpryce.hamkrest.startsWith
 import no.nilsen.cleana.ansatt.query.HentProduktImpl
 import no.nilsen.cleana.ansatt.query.ProduktQueryReporitory
-import no.nilsen.cleana.domain.produkt.Produkt
+import no.nilsen.cleana.produkt.Produkt
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
