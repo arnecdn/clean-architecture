@@ -20,23 +20,26 @@ open class SalgController {
     @Autowired
     lateinit var salgCommandRepository: SalgCommandRepository
 
+    @GetMapping("/salg", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun hentAlleSalger(): List<HentSalgView> {
+        return HentSalgImpl(salgQueryReporitory).hentAlle().map { a -> HentSalgView(a.id, a.antall, a.totalPris, a.selger, a.kunde, a.produkt) }
+    }
+
     @GetMapping("/salg/{id}", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun hentSalg(@PathVariable id: Int): HentSalgView {
         val salg = HentSalgImpl(salgQueryReporitory).hent(id)
         return HentSalgView(salg.id, salg.antall, salg.totalPris, salg.selger, salg.kunde, salg.produkt)
     }
 
-    @GetMapping("/salg", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    fun hentAlleSalger(): List<HentSalgView> {
-        return HentSalgImpl(salgQueryReporitory).hentAlle().map { a -> HentSalgView(a.id, a.antall, a.totalPris, a.selger, a.kunde, a.produkt) }
-    }
-
-
     @GetMapping("/salg/kunde/{id}", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun hentAlleSalgPrKunde(@PathVariable id: Int): List<HentSalgView> {
         return HentSalgImpl(salgQueryReporitory).hentSalgPerKunde(id).map { a -> HentSalgView(a.id, a.antall, a.totalPris, a.selger, a.kunde, a.produkt) }
     }
 
+    @GetMapping("/salg/selger/{id}", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun hentAlleSalgPrSelger(@PathVariable id: Int): List<HentSalgView> {
+        return HentSalgImpl(salgQueryReporitory).hentSalgPerAnsatt(id).map { a -> HentSalgView(a.id, a.antall, a.totalPris, a.selger, a.kunde, a.produkt) }
+    }
 
     @PostMapping("/salg/", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun opprett(@RequestBody opprettSalgView: OpprettSalgView) {
