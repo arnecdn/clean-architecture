@@ -46,7 +46,6 @@
       <groupId>no.nilsen.cleana</groupId>
       <artifactId>domain</artifactId>
       <version>1.0-SNAPSHOT</version>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>com.natpryce</groupId>
