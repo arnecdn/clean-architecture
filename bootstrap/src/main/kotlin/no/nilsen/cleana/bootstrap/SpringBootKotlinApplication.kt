@@ -1,4 +1,4 @@
-package no.nilsen.cleana.bootstrap.myapp
+package no.nilsen.cleana.bootstrap
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -20,8 +20,7 @@ const router = new VueRouter({
   ]
 });
 
-new Vue({
-  router,
+new Vue({router,
   template: `
     <div>
       <nav>
