@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
 
     data () {
@@ -20,8 +21,18 @@
         if (this.selgernavn.length == 0) {
           return;
         }
+        axios
+          .post('http://localhost:8080/ansatt', {
+            navn : this.selgernavn
+          }, { headers: {
+                'Content-type': 'application/json',
+              }
+            }
+          )
+          .then(response => (this.melding = response))
 
         this.melding = 'Selger ' + this.selgernavn + ' ble opprettet'
+
         console.log(this.melding)
       }
     }
