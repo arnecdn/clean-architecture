@@ -15,7 +15,7 @@
       }
     },
     mounted() {
-      axios.get('http://localhost:8080/ansatt/1', {},
+      axios.get('http://localhost:8080/ansatt', {},
         {
           headers: {
             'Content-type': 'application/json',

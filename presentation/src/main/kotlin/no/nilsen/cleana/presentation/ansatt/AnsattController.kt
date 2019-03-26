@@ -35,7 +35,7 @@ open class AnsattController {
     }
 
 
-    @PostMapping("/ansatt/", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @PostMapping("/ansatt", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun hentAnsatt(@RequestBody opprettAnsattView: OpprettAnsattView) {
         val ansattOppretter = OpprettAnsattImpl(ansattCommandRepository)
         ansattOppretter.opprett(OpprettAnsattDto(opprettAnsattView.navn))

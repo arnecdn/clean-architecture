@@ -49,7 +49,12 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
+    proxy: {
+      "/ansatt": {
+        target: "http://localhost:8080"
+      }
+    }
   },
   performance: {
     hints: false

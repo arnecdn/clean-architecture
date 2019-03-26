@@ -8,24 +8,26 @@
 
 <script>
   import axios from 'axios'
+
   export default {
 
-    data () {
+    data() {
       return {
         selgernavn: "",
         melding: ""
       }
     },
     methods: {
-      opprett () {
+      opprett() {
         if (this.selgernavn.length == 0) {
           return;
         }
         axios
-          .post('http://localhost:8080/ansatt', {
-            navn : this.selgernavn
-          }, { headers: {
-                'Content-type': 'application/json',
+          .post('/ansatt', {
+              navn: this.selgernavn
+            }, {
+              headers: {
+                'Content-type': 'application/json'
               }
             }
           )
