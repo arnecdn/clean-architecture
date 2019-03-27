@@ -1,9 +1,6 @@
 package no.nilsen.cleana.presentation.ansatt
 
-import no.nilsen.cleana.application.ansatt.command.AnsattCommandRepository
-import no.nilsen.cleana.application.ansatt.command.OpprettAnsattDto
-import no.nilsen.cleana.application.ansatt.command.OpprettAnsattImpl
-import no.nilsen.cleana.application.ansatt.command.OpprettAnsattView
+import no.nilsen.cleana.application.ansatt.command.*
 import no.nilsen.cleana.application.ansatt.query.AnsattQueryReporitory
 import no.nilsen.cleana.application.ansatt.query.HentAnsattImpl
 import no.nilsen.cleana.application.ansatt.query.HentAnsattView
@@ -36,8 +33,16 @@ open class AnsattController {
 
 
     @PostMapping("/ansatt", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    fun hentAnsatt(@RequestBody opprettAnsattView: OpprettAnsattView) {
-        val ansattOppretter = OpprettAnsattImpl(ansattCommandRepository)
+    fun opprettAnsatt(@RequestBody opprettAnsattView: OpprettAnsattView) {
+        val ansattOppretter = AnsattCommandImpl(ansattCommandRepository)
         ansattOppretter.opprett(OpprettAnsattDto(opprettAnsattView.navn))
     }
+
+
+    @PostMapping("/ansatt/{id}", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun endreAnsatt(@RequestBody endreAnsattView: EndreAnsattView) {
+        val ansattCmnd = AnsattCommandImpl(ansattCommandRepository)
+        ansattCmnd.endre(EndreAnsattDto(endreAnsattView.id, endreAnsattView.navn))
+    }
+
 }

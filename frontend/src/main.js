@@ -25,10 +25,12 @@ const router = new VueRouter({
         },
         {
           path: 'list',
+          name: 'list_selger',
           component: ListSelgere
         },
         {
-          path: 'endre:id',
+          path: 'endre/:id',
+          name: 'endre_selger',
           component: EndreSelger
         }
       ]

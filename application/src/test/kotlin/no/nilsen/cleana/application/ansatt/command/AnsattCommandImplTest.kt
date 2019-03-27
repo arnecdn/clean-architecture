@@ -3,9 +3,9 @@ package no.nilsen.cleana.application.ansatt.command
 import no.nilsen.cleana.domain.ansatt.Ansatt
 import org.junit.jupiter.api.Test
 
-class OpprettAnsattImplTest {
+class AnsattCommandImplTest {
     val repo = AnsattCommandRepositoryMap()
-    val opprettAnsatt = OpprettAnsattImpl(repo)
+    val opprettAnsatt = AnsattCommandImpl(repo)
 
     @Test
     fun skalOppretteAnsatt() {
@@ -21,6 +21,11 @@ class OpprettAnsattImplTest {
 
 
     class AnsattCommandRepositoryMap : AnsattCommandRepository {
+        override fun endre(ansatt: Ansatt) {
+            val ny = Ansatt(ansatt.id, ansatt.navn)
+            ansatte.put(ny.id, ny)
+        }
+
         val ansatte: MutableMap<Int, Ansatt> = hashMapOf()
 
         override fun opprett(ansatt: Ansatt) {

@@ -33,4 +33,6 @@ open class AnsattCrudRepositoryH2ImplTest {
         assertTrue(findById.get().navn.equals("Arne Nilsen"))
     }
 
+
+
 }

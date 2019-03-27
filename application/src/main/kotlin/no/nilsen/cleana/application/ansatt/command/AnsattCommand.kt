@@ -1,5 +1,6 @@
 package no.nilsen.cleana.application.ansatt.command
 
-interface OpprettAnsatt {
+interface AnsattCommand {
     fun opprett(ansatt: OpprettAnsattDto)
+    fun endre(ansatt: EndreAnsattDto)
 }

@@ -1,7 +1,7 @@
 <template>
   <div id="opprett-selger">
     <input v-model="selger.navn" placeholder="Selgernavn">
-    <button v-on:click="endre">Endre selger</button>
+    <button v-on:click="endre">Endre selger </button>
     <p>{{ melding }}</p>
   </div>
 </template>
@@ -23,11 +23,11 @@
     },
     methods: {
       endre() {
-        if (this.selgernavn.length == 0) {
+        if (this.selger.navn.length == 0) {
           return;
         }
         axios
-          .post('/ansatt', {
+          .post('/ansatt/' + this.$route.params.id, {
               navn: this.selgernavn
             }, {
               headers: {
@@ -43,7 +43,7 @@
       }
     },
   mounted() {
-    axios.get('/ansatt/$route.params.id', {},
+    axios.get('/ansatt/' + this.$route.params.id, {},
       {
         headers: {
           'Content-type': 'application/json',

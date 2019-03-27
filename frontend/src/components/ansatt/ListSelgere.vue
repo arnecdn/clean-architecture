@@ -1,9 +1,8 @@
 <template>
   <div id="list-selgere">
-    <p>Liste med selgere</p>
     <ul>
       <li v-for="selger in selgere">
-        <router-link to="/selger/endre:id" >{{selger.navn}}</router-link>
+        <router-link :to="{name:'endre_selger', params:{ id: selger.id }}" >{{selger.navn}}</router-link>
       </li>
     </ul>
   </div>
@@ -13,7 +12,6 @@
   import axios from 'axios'
 
   export default {
-
     data() {
       return {
         selgere: [],
@@ -32,7 +30,7 @@
         }
       ).then(response => (this.selgere = response.data))
 
-      
+
       console.log(this.selgere)
 
     },
