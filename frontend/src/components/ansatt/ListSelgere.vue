@@ -1,7 +1,11 @@
 <template>
   <div id="list-selgere">
-
-    <p>Liste med selgere {{ selgere }}</p>
+    <p>Liste med selgere</p>
+    <ul>
+      <li v-for="selger in selgere">
+        <router-link to="/selger/endre:id" >{{selger.navn}}</router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -9,28 +13,31 @@
   import axios from 'axios'
 
   export default {
-    data () {
+
+    data() {
       return {
-        selgere : ""
+        selgere: [],
+        selger: {
+          id: '',
+          navn: ''
+        }
       }
     },
     mounted() {
-      axios.get('http://localhost:8080/ansatt', {},
+      axios.get('/ansatt', {},
         {
           headers: {
             'Content-type': 'application/json',
           }
         }
-      )
-        .then(response => (this.melding = response))
+      ).then(response => (this.selgere = response.data))
 
-      this.selgere = 'Hentet selgere'
-
-      console.log(this.selgere )
+      
+      console.log(this.selgere)
 
     },
     methods: {
-      opprett () {
+      opprett() {
         return ""
       }
     }

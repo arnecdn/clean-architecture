@@ -8,6 +8,7 @@ import Kunde from './components/kunde/Kunde.vue';
 import Produkt from './components/produkt/Produkt.vue';
 import Salg from './components/salg/Salg.vue';
 import ListSelgere from './components/ansatt/ListSelgere.vue';
+import EndreSelger from './components/ansatt/EndreSelger.vue';
 
 Vue.use(VueRouter);
 
@@ -17,13 +18,18 @@ const router = new VueRouter({
   routes: [
     {
       path: '/selger', component: Selger,
-      children: [{
-        path: 'opprett',
-        component: OpprettSelger
-      },
+      children: [
+        {
+          path: 'opprett',
+          component: OpprettSelger
+        },
         {
           path: 'list',
           component: ListSelgere
+        },
+        {
+          path: 'endre:id',
+          component: EndreSelger
         }
       ]
     },
