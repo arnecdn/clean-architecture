@@ -7,7 +7,6 @@ import org.springframework.context.annotation.ComponentScan
 @SpringBootApplication
 @ComponentScan("no.nilsen.cleana")
 open class SpringBootKotlinApplication
-
 fun main(args: Array<String>) {
     runApplication<SpringBootKotlinApplication>(*args)
 }

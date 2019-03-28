@@ -27,8 +27,8 @@
           return;
         }
         axios
-          .post('/ansatt/' + this.$route.params.id, {
-              navn: this.selgernavn
+          .put('/ansatt/' + this.$route.params.id, {
+              navn: this.selger.navn
             }, {
               headers: {
                 'Content-type': 'application/json'

@@ -23,7 +23,7 @@
           return;
         }
         axios
-          .post('/ansatt', {
+          .put('/ansatt', {
               navn: this.selgernavn
             }, {
               headers: {

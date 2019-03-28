@@ -14,6 +14,7 @@ open class AnsattController {
     @Autowired
     lateinit var ansattQueryReporitory: AnsattQueryReporitory
 
+
     @Autowired
     lateinit var ansattCommandRepository: AnsattCommandRepository
 
@@ -32,17 +33,15 @@ open class AnsattController {
     }
 
 
-    @PostMapping("/ansatt", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @PutMapping("/ansatt", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun opprettAnsatt(@RequestBody opprettAnsattView: OpprettAnsattView) {
-        val ansattOppretter = AnsattCommandImpl(ansattCommandRepository)
-        ansattOppretter.opprett(OpprettAnsattDto(opprettAnsattView.navn))
+        OpprettOpprettAnsattCommandImpl(ansattCommandRepository).opprett(OpprettAnsattDto(opprettAnsattView.navn))
     }
 
 
-    @PostMapping("/ansatt/{id}", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    fun endreAnsatt(@RequestBody endreAnsattView: EndreAnsattView) {
-        val ansattCmnd = AnsattCommandImpl(ansattCommandRepository)
-        ansattCmnd.endre(EndreAnsattDto(endreAnsattView.id, endreAnsattView.navn))
+    @PutMapping("/ansatt/{id}", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun endreAnsatt(@PathVariable id: Int,@RequestBody endreAnsattView: EndreAnsattView) {
+        EndreAnsattCommandImpl(ansattCommandRepository).endre(EndreAnsattDto(id, endreAnsattView.navn))
     }
 
 }

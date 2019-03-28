@@ -3,9 +3,9 @@ package no.nilsen.cleana.application.ansatt.command
 import no.nilsen.cleana.domain.ansatt.Ansatt
 import org.junit.jupiter.api.Test
 
-class AnsattCommandImplTest {
+class OpprettOpprettAnsattCommandImplTest {
     val repo = AnsattCommandRepositoryMap()
-    val opprettAnsatt = AnsattCommandImpl(repo)
+    val opprettAnsatt = OpprettOpprettAnsattCommandImpl(repo)
 
     @Test
     fun skalOppretteAnsatt() {

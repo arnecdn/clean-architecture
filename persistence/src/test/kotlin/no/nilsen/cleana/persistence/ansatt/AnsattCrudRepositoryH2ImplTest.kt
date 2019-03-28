@@ -26,7 +26,7 @@ open class AnsattCrudRepositoryH2ImplTest {
     lateinit var ansattRepo: AnsattCommandRepositoryH2Impl
 
     @Test
-    open fun skalTest() {
+    fun `skal opprette ansatt`() {
         ansattRepo.opprett(Ansatt(navn = "Arne Nilsen"))
 
         val findById = ansattRepo.ansattCrudRepo.findById(1)
