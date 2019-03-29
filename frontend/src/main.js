@@ -16,24 +16,11 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
+    {path: '/selger', component: Selger,
+    name : 'selger'},
     {
-      path: '/selger', component: Selger,
-      children: [
-        {
-          path: 'opprett',
-          component: OpprettSelger
-        },
-        {
-          path: 'list',
-          name: 'list_selger',
-          component: ListSelgere
-        },
-        {
-          path: 'endre/:id',
-          name: 'endre_selger',
-          component: EndreSelger
-        }
-      ]
+      path: '/selger/:id', component: Selger,
+      name: 'selger_endre'
     },
     { path: '/kunde', component: Kunde },
     { path: '/produkt', component: Produkt },

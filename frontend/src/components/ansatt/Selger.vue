@@ -1,14 +1,19 @@
 <template>
   <div id="selger">
-    <router-link to="/selger/opprett">Opprett selger</router-link>
-    <router-link to="/selger/list">List selgere</router-link>
+    <EndreSelger/>
+    <ListSelgere/>
     <router-view class="view"></router-view>
   </div>
 </template>
 
 <script>
+  import ListSelgere from './ListSelgere.vue'
+  import EndreSelger from './EndreSelger.vue'
   export default {
-
+    components : {
+      ListSelgere,
+      EndreSelger
+    }
 
 
   }

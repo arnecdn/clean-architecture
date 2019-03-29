@@ -2,7 +2,7 @@
   <div id="list-selgere">
     <ul>
       <li v-for="selger in selgere">
-        <router-link :to="{name:'endre_selger', params:{ id: selger.id }}" >{{selger.navn}}</router-link>
+        <router-link :to="{name:'selger_endre', params:{ id: selger.id }}" >{{selger.navn}}</router-link>
       </li>
     </ul>
   </div>
@@ -29,9 +29,6 @@
           }
         }
       ).then(response => (this.selgere = response.data))
-
-
-      console.log(this.selgere)
 
     },
     methods: {
