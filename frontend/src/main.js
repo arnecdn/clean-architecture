@@ -3,12 +3,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Selger from './components/ansatt/Selger.vue';
-import OpprettSelger from './components/ansatt/OpprettSelger.vue';
 import Kunde from './components/kunde/Kunde.vue';
 import Produkt from './components/produkt/Produkt.vue';
 import Salg from './components/salg/Salg.vue';
-import ListSelgere from './components/ansatt/ListSelgere.vue';
-import EndreSelger from './components/ansatt/EndreSelger.vue';
 
 Vue.use(VueRouter);
 
@@ -35,10 +32,10 @@ new Vue({
       <nav>
         <div >
           <ul class="navbar-nav">            
-            <li class="nav-item"><router-link to="/selger" class="nav-link">Selger</router-link></li>
-            <li class="nav-item"><router-link to="/kunde" class="nav-link">Kunde</router-link></li>
-            <li class="nav-item"><router-link to="/produkt" class="nav-link">Produkt</router-link></li>
-            <li class="nav-item"><router-link to="/salg" class="nav-link">Salg</router-link></li>
+            <router-link to="/selger" class="nav-link">Selger</router-link>
+            <router-link to="/kunde" class="nav-link">Kunde</router-link>
+            <router-link to="/produkt" class="nav-link">Produkt</router-link>
+            <router-link to="/salg" class="nav-link">Salg</router-link>
           </ul>
         </div>
       </nav>

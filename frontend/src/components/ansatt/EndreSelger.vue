@@ -1,8 +1,12 @@
 <template>
   <div id="opprett-selger">
-    <input v-model="selger.navn" placeholder="Selgernavn">
-    <button v-on:click="endre">Opprett/ endre selger</button>
+    <input v-model="selgerTilLagring.navn" placeholder="Selgernavn">
+    <button v-on:click="lagreSelger" v-text="knappTekst"></button>
     <p>{{ melding }}</p>
+    <li v-for="selger in selgere">
+      <router-link :to="{name:'selger_endre', params:{ id: selger.id }}">{{selger.navn}}</router-link>
+    </li>
+
   </div>
 </template>
 
@@ -14,15 +18,27 @@
     data() {
       return {
         melding: "",
-        selger: {
+        knappTekst: 'Opprett selgerTilLagring',
+        selgere: [],
+        selgerTilLagring: {
           id: '',
           navn: ''
         }
       }
     },
     methods: {
-      endre() {
-        if (this.selger.navn.length == 0) {
+      hentAlle() {
+        axios.get('/ansatt', {},
+          {
+            headers: {
+              'Content-type': 'application/json',
+            }
+          }
+        ).then(response => (this.selgere = response.data))
+
+      },
+      lagreSelger() {
+        if (this.selgerTilLagring.navn.length == 0) {
           return;
         }
         var selgerId = ''
@@ -32,7 +48,7 @@
 
         axios
           .put('/ansatt/' + selgerId, {
-              navn: this.selger.navn
+              navn: this.selgerTilLagring.navn
             }, {
               headers: {
                 'Content-type': 'application/json'
@@ -40,7 +56,6 @@
             }
           )
           .then(response => (
-
             this.melding = 'Selger er oppdatert!'
           ))
           .catch(error => {
@@ -49,19 +64,23 @@
           });
 
         this.melding = 'Selger ' + this.selgernavn + ' ble opprettet'
-        this.selger.navn = ''
-        this.selger.id = ''
+        this.selgerTilLagring.navn = ''
+        this.selgerTilLagring.id = ''
         console.log(this.melding)
-//        this.$router.push('selger')
+        this.$emit ('lagre', 7);
       }
     },
+    mounted() {
+      this.hentAlle()
+    },
     watch: {
-
       '$route.params.id'(newId, oldId) {
         this.melding =''
         if (this.$route.params.id == undefined) {
           return
         }
+        this.knappTekst = 'Lagre selgerTilLagring'
+
         var selgerId = this.$route.params.id
 
         axios.get('/ansatt/' + selgerId, {},
@@ -70,7 +89,7 @@
               'Content-type': 'application/json',
             }
           }
-        ).then(response => (this.selger = response.data))
+        ).then(response => (this.selgerTilLagring = response.data))
 
       }
 

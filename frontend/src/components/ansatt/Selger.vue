@@ -1,20 +1,104 @@
 <template>
-  <div id="selger">
-    <EndreSelger/>
-    <ListSelgere/>
-    <router-view class="view"></router-view>
+  <div>
+    <input v-model="selgerTilLagring.navn" placeholder="Selgernavn">
+    <button v-on:click="lagreSelger" v-text="knappTekst"></button>
+    <p>{{ melding }}</p>
+    <li v-for="(selger, index) in selgere" >
+      <router-link :to="{name:'selger_endre', params:{ id: selger.id }}">{{selger.navn}}</router-link>
+    </li>
+
   </div>
 </template>
 
 <script>
-  import ListSelgere from './ListSelgere.vue'
-  import EndreSelger from './EndreSelger.vue'
+  import axios from 'axios'
+
   export default {
-    components : {
-      ListSelgere,
-      EndreSelger
+
+    data() {
+      return {
+        index : 0,
+        melding: "",
+        knappTekst: 'Opprett selger',
+        selgere: [],
+        selgerTilLagring: {
+          id: '',
+          navn: ''
+        }
+      }
+    },
+    methods: {
+      hentAlle() {
+        axios.get('/ansatt', {},
+          {
+            headers: {
+              'Content-type': 'application/json',
+            }
+          }
+        ).then(response => (this.selgere = response.data))
+
+      },
+      lagreSelger() {
+        if (this.selgerTilLagring.navn.length == 0) {
+          return;
+        }
+        var selgerId = ''
+        if (this.$route.params.id != undefined) {
+          selgerId = this.$route.params.id
+        }
+
+        axios
+          .put('/ansatt/' + selgerId, {
+              navn: this.selgerTilLagring.navn
+            }, {
+              headers: {
+                'Content-type': 'application/json'
+              }
+            }
+          )
+          .then(response => (
+            this.melding = 'Selger er oppdatert!'
+          ))
+          .catch(error => {
+            this.melding = "Feil. Sjekk console"
+            console.log(error.response)
+          });
+
+        this.melding = 'Selger ' + this.selgernavn + ' ble opprettet'
+        this.selgerTilLagring.navn = ''
+        this.selgerTilLagring.id = ''
+        this.hentAlle()
+        this.$router.push('/selger')
+      }
+    },
+    mounted() {
+      console.log('hent alle')
+      this.hentAlle()
+    },
+    watch: {
+      '$route.params.id'(newId, oldId) {
+        this.melding = ''
+        if (this.$route.params.id == undefined) {
+          'Opprett selger'
+          return
+        }
+
+        this.knappTekst = 'Lagre selger'
+
+        var selgerId = this.$route.params.id
+
+        axios.get('/ansatt/' + selgerId, {},
+          {
+            headers: {
+              'Content-type': 'application/json',
+            }
+          }
+        ).then(response => (this.selgerTilLagring = response.data))
+
+      },
+      '$route' (to, from) {
+        this.hentAlle()
+      }
     }
-
-
   }
 </script>
