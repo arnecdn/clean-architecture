@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 open class ProduktQueryRepositoryH2Impl : ProduktQueryReporitory {
     override fun hentAlle(): List<Produkt> {
-        return crudRepo.findAll().map { p -> Produkt(beskrivelse = p.beskrivelse, pris = p.pris) }
+        return crudRepo.findAll().map { p -> Produkt(id=p.id, beskrivelse = p.beskrivelse, pris = p.pris) }
 
     }
 

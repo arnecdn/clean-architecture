@@ -8,8 +8,12 @@ import org.springframework.stereotype.Repository
 
 @Repository
 open class KundeCommandRepositoryH2Impl : KundeCommandRepository {
+    override fun endre(kunde: Kunde) {
+        crudRepo.save(KundeEntitet(id = kunde.id, navn = kunde.navn))
+    }
+
     override fun opprett(kunde: Kunde) {
-        crudRepo.save(KundeEntitet(navn=kunde.navn))
+        crudRepo.save(KundeEntitet(navn = kunde.navn))
     }
 
     @Autowired

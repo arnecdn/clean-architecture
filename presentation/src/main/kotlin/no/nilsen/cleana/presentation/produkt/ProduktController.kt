@@ -7,24 +7,20 @@ import no.nilsen.cleana.ansatt.query.HentProduktImpl
 import no.nilsen.cleana.ansatt.query.ProduktQueryReporitory
 import no.nilsen.cleana.application.ansatt.command.OpprettProduktView
 import no.nilsen.cleana.application.ansatt.query.HentProduktView
+import no.nilsen.cleana.presentation.BaseController
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
 
 @RestController
-open class ProduktController {
+open class ProduktController: BaseController() {
 
     @Autowired
     lateinit var produktQueryReporitory: ProduktQueryReporitory
 
     @Autowired
     lateinit var produktCommandRepository: ProduktCommandRepository
-
-    @GetMapping("/produkt/test", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    fun hentProduktEksempel(): HentProduktView {
-        return HentProduktView(1, "Produkt Produktsen", BigDecimal.TEN)
-    }
 
     @GetMapping("/produkt/{id}", produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun hentProdukt(@PathVariable id: Int): HentProduktView {
@@ -39,7 +35,7 @@ open class ProduktController {
     }
 
 
-    @PostMapping("/produkt/", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @PutMapping("/produkt", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun opprett(@RequestBody opprettProduktView: OpprettProduktView) {
         val ProduktOppretter = OpprettProduktImpl(produktCommandRepository)
         ProduktOppretter.opprett(OpprettProduktDto(beskrivelse = opprettProduktView.beskrivelse, pris = opprettProduktView.pris))

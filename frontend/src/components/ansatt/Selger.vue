@@ -3,8 +3,8 @@
     <input v-model="selgerTilLagring.navn" placeholder="Selgernavn">
     <button v-on:click="lagreSelger" v-text="knappTekst"></button>
     <p>{{ melding }}</p>
-    <li v-for="(selger, index) in selgere" >
-      <router-link :to="{name:'selger_endre', params:{ id: selger.id }}">{{selger.navn}}</router-link>
+    <li v-for="selger in selgere" >
+      <router-link :to="{name:'selger_lagre', params:{ id: selger.id }}">{{selger.navn}}</router-link>
     </li>
 
   </div>
@@ -17,7 +17,6 @@
 
     data() {
       return {
-        index : 0,
         melding: "",
         knappTekst: 'Opprett selger',
         selgere: [],
@@ -29,7 +28,7 @@
     },
     methods: {
       hentAlle() {
-        axios.get('/ansatt', {},
+        axios.get('/api/ansatt', {},
           {
             headers: {
               'Content-type': 'application/json',
@@ -48,7 +47,7 @@
         }
 
         axios
-          .put('/ansatt/' + selgerId, {
+          .put('/api/ansatt/' + selgerId, {
               navn: this.selgerTilLagring.navn
             }, {
               headers: {
@@ -87,7 +86,7 @@
 
         var selgerId = this.$route.params.id
 
-        axios.get('/ansatt/' + selgerId, {},
+        axios.get('/api/ansatt/' + selgerId, {},
           {
             headers: {
               'Content-type': 'application/json',

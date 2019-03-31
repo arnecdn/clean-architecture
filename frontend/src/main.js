@@ -13,15 +13,45 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    {path: '/selger', component: Selger,
-    name : 'selger'},
     {
-      path: '/selger/:id', component: Selger,
-      name: 'selger_endre'
+      path: '/selger',
+      component: Selger,
+      name: 'selger'
     },
-    { path: '/kunde', component: Kunde },
-    { path: '/produkt', component: Produkt },
-    { path: '/salg', component: Salg }
+    {
+      path: '/selger/:id',
+      component: Selger,
+      name: 'selger_lagre'
+    },
+    {
+      path: '/kunde',
+      component: Kunde,
+      name: 'kunde'
+    },
+    {
+      path: '/kunde/:id',
+      component: Kunde,
+      name: 'kunde_lagre'
+    },
+    {
+      path: '/produkt',
+      component: Produkt,
+      name: 'produkt'
+    },
+    {
+      path: '/produkt/:id',
+      component: Produkt,
+      name: 'produkt_lagre'
+    },
+    {
+      path: '/salg',
+      component: Salg,
+      name: 'salg'
+    }, {
+      path: '/salg/:id',
+      component: Salg,
+      name: 'salg_lagre'
+    }
   ]
 });
 

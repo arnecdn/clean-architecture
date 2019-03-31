@@ -51,7 +51,7 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     proxy: {
-      "/ansatt": {
+      "/api/*": {
         target: "http://localhost:8080"
       }
     }
