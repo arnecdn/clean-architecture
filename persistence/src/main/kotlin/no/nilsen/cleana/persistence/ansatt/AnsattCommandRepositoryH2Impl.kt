@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository
 
 @Repository
 open class AnsattCommandRepositoryH2Impl : AnsattCommandRepository {
+    override fun slett(ansatt: Ansatt) {
+        ansattCrudRepo.delete(AnsattEntitet(id=ansatt.id))
+    }
+
     override fun endre(ansatt: Ansatt) {
         ansattCrudRepo.save(AnsattEntitet(id=ansatt.id, navn = ansatt.navn))
     }

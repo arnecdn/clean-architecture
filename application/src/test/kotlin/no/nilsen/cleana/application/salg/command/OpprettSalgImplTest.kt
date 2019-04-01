@@ -19,6 +19,14 @@ internal class OpprettSalgImplTest {
     }
 
     class SalgCommandRepositoryMap : SalgCommandRepository {
+        override fun endre(salg: Salg) {
+            salgMap.put(salg.id, salg)
+        }
+
+        override fun slett(salg: Salg) {
+            salgMap.remove(salg.id)
+        }
+
         val salgMap: MutableMap<Int, Salg> = hashMapOf()
 
         override fun opprett(nyttSalg: Salg) {

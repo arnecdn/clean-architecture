@@ -21,8 +21,12 @@ class OpprettProduktImplTest {
     }
 
     class ProduktCommandRepositoryMap : ProduktCommandRepository {
+        override fun endre(produkt: Produkt) {
+            produkter.put(produkt.id, produkt)
+        }
+
         override fun slett(produkt: Produkt) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            produkter.remove(produkt.id)
         }
 
         var produkter: MutableMap<Int, Produkt> = hashMapOf()

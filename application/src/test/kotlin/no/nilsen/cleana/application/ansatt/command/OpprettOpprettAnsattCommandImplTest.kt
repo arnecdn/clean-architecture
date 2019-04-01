@@ -21,6 +21,10 @@ class OpprettOpprettAnsattCommandImplTest {
 
 
     class AnsattCommandRepositoryMap : AnsattCommandRepository {
+        override fun slett(ansatt: Ansatt) {
+            ansatte.remove(ansatt.id)
+        }
+
         override fun endre(ansatt: Ansatt) {
             val ny = Ansatt(ansatt.id, ansatt.navn)
             ansatte.put(ny.id, ny)
