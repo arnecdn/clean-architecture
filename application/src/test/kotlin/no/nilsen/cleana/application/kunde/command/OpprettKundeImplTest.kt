@@ -25,6 +25,11 @@ internal class OpprettKundeImplTest {
     }
 
     class KundeCommandRepositoryMap : KundeCommandRepository {
+        override fun endre(kunde: Kunde) {
+            val endretKunde = Kunde(kunde.id, kunde.navn)
+            kunder.put(endretKunde.id, endretKunde)
+
+        }
 
         var kunder: MutableMap<Int, Kunde> = hashMapOf()
 
