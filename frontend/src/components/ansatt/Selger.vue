@@ -1,9 +1,11 @@
 <template>
   <div>
     <input v-model="selgerTilLagring.navn" placeholder="Selgernavn">
-    <button v-on:click="lagreSelger" v-text="knappTekst"></button>
+    <button v-if="selgerTilLagring.id == ''" v-on:click.stop.prevent="opprettSelger">Opprett selger</button>
+    <button v-if="selgerTilLagring.id != ''" v-on:click.stop.prevent="lagreSelger">Lagre selger</button>
     <p>{{ melding }}</p>
-    <li v-for="selger in selgere" >
+    <li v-for="selger in selgere">
+      <button v-on:click="slettSelger(selger.id)">Slett</button>
       <router-link :to="{name:'selger_lagre', params:{ id: selger.id }}">{{selger.navn}}</router-link>
     </li>
 
@@ -18,7 +20,6 @@
     data() {
       return {
         melding: "",
-        knappTekst: 'Opprett selger',
         selgere: [],
         selgerTilLagring: {
           id: '',
@@ -27,6 +28,54 @@
       }
     },
     methods: {
+
+      lagreSelger() {
+        axios
+          .put('/api/ansatt/' + this.$route.params.id, {
+              navn: this.selgerTilLagring.navn
+            }, {
+              headers: {
+                'Content-type': 'application/json'
+              }
+            }
+          )
+          .then(response => {
+            this.melding = 'Selger er oppdatert!'
+            this.hentAlle()
+          })
+          .catch(error => {
+            this.melding = "Feil. Sjekk console"
+            console.log(error.response)
+          });
+      },
+      opprettSelger() {
+
+        axios
+          .put('/api/ansatt/', {
+              navn: this.selgerTilLagring.navn
+            }, {
+              headers: {
+                'Content-type': 'application/json'
+              }
+            }
+          )
+          .then(response => {
+            this.melding = 'Selger er oppdatert!'
+            this.hentAlle()
+          })
+          .catch(error => {
+            this.melding = "Feil. Sjekk console"
+            console.log(error.response)
+          });
+      },
+      slettSelger(id) {
+        axios.delete('/api/ansatt/' + id, {},
+          {}
+        ).then(response => {
+          this.selgere = response.data
+          this.hentAlle()
+        })
+      },
       hentAlle() {
         axios.get('/api/ansatt', {},
           {
@@ -35,41 +84,14 @@
             }
           }
         ).then(response => (this.selgere = response.data))
-
-      },
-      lagreSelger() {
-        if (this.selgerTilLagring.navn.length == 0) {
-          return;
-        }
-        var selgerId = ''
-        if (this.$route.params.id != undefined) {
-          selgerId = this.$route.params.id
-        }
-
-        axios
-          .put('/api/ansatt/' + selgerId, {
-              navn: this.selgerTilLagring.navn
-            }, {
-              headers: {
-                'Content-type': 'application/json'
-              }
-            }
-          )
-          .then(response => (
-            this.melding = 'Selger er oppdatert!'
-          ))
           .catch(error => {
             this.melding = "Feil. Sjekk console"
             console.log(error.response)
           });
 
-        this.melding = 'Selger ' + this.selgernavn + ' ble opprettet'
-        this.selgerTilLagring.navn = ''
-        this.selgerTilLagring.id = ''
-        this.hentAlle()
-        this.$router.push('/selger')
-      }
+      },
     },
+
     mounted() {
       console.log('hent alle')
       this.hentAlle()
@@ -82,8 +104,6 @@
           return
         }
 
-        this.knappTekst = 'Lagre selger'
-
         var selgerId = this.$route.params.id
 
         axios.get('/api/ansatt/' + selgerId, {},
@@ -94,9 +114,6 @@
           }
         ).then(response => (this.selgerTilLagring = response.data))
 
-      },
-      '$route' (to, from) {
-        this.hentAlle()
       }
     }
   }

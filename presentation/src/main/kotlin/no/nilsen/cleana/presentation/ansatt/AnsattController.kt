@@ -44,4 +44,10 @@ open class AnsattController : BaseController() {
         EndreAnsattCommandImpl(ansattCommandRepository).endre(EndreAnsattDto(id, ansattView.navn))
     }
 
+
+    @DeleteMapping("ansatt/{id}")
+    fun slett(@PathVariable id: Int) {
+        SlettAnsattCommandImpl(ansattCommandRepository).slett(SlettAnsattDto(id))
+    }
+
 }
