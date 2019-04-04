@@ -2,13 +2,24 @@
   <div>
     <input v-model="kundeTilLagring.navn" placeholder="Kundenavn">
     <button v-if="kundeTilLagring.id == ''" v-on:click.stop.prevent="opprettKunde">Opprett kunde</button>
-    <button v-if="kundeTilLagring.id != ''" v-on:click.stop.prevent="lagreKunde">Lagre kunde</button>
+    <button v-if="kundeTilLagring.id != ''" v-on:click.stop.prevent="lagreKunde(kundeTilLagring.id)">Lagre kunde</button>
     <p>{{ melding }}</p>
-    <li v-for="kunde in kundee">
-      <button v-on:click="slettKunde(kunde.id)">Slett</button>
-      <router-link :to="{name:'kunde_lagre', params:{ id: kunde.id }}">{{kunde.navn}}</router-link>
-    </li>
+    <table>
+      <tr>
+        <td>Administrer</td>
+        <td>Kundenavn</td>
+      </tr>
 
+      <tr v-for="kunde in kundee">
+        <td>
+          <button v-on:click="slettKunde(kunde.id)">Slett</button>
+          <button v-on:click="hentKunde(kunde.id)">Endre</button>
+        </td>
+        <td>
+          {{kunde.navn}}
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -28,15 +39,15 @@
       }
     },
     methods: {
-      tømFelter(){
+      tømFelter() {
         this.kundeTilLagring.id = ''
-        this.kundeTilLagring.navn= ''
+        this.kundeTilLagring.navn = ''
       },
-      lagreKunde() {
+      lagreKunde(id) {
         axios
-          .put('/api/kunde/' + this.$route.params.id, {
-              navn: this.kundeTilLagring.navn
-            }, {
+          .put('/api/kunde/' + id,
+            this.kundeTilLagring
+            , {
               headers: {
                 'Content-type': 'application/json'
               }
@@ -82,6 +93,24 @@
           this.hentAlle()
         })
       },
+      hentSalg(id) {
+        axios.get('/api/salg/' + id, {},
+          {
+            headers: {
+              'Content-type': 'application/json',
+            }
+          }
+        ).then(response => (this.kundeTilLagring = response.data))
+      },
+      hentKunde(id) {
+        axios.get('/api/kunde/' + id, {},
+          {
+            headers: {
+              'Content-type': 'application/json',
+            }
+          }
+        ).then(response => (this.kundeTilLagring = response.data))
+      },
       hentAlle() {
         axios.get('/api/kunde', {},
           {
@@ -101,26 +130,6 @@
     mounted() {
       console.log('hent alle')
       this.hentAlle()
-    },
-    watch: {
-      '$route.params.id'(newId, oldId) {
-        this.melding = ''
-        if (this.$route.params.id == undefined) {
-          'Opprett kunde'
-          return
-        }
-
-        var kundeId = this.$route.params.id
-
-        axios.get('/api/kunde/' + kundeId, {},
-          {
-            headers: {
-              'Content-type': 'application/json',
-            }
-          }
-        ).then(response => (this.kundeTilLagring = response.data))
-
-      }
     }
   }
 </script>

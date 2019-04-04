@@ -3,14 +3,29 @@
     <input v-model="produktTilLagring.beskrivelse" placeholder="Beskrivelse">
     <input v-model="produktTilLagring.pris" placeholder="Pris">
     <button v-if="produktTilLagring.id == ''" v-on:click.stop.prevent="opprettProdukt">Opprett produkt</button>
-    <button v-if="produktTilLagring.id != ''" v-on:click.stop.prevent="lagreProdukt">Lagre produkt</button>
+    <button v-if="produktTilLagring.id != ''" v-on:click.stop.prevent="lagreProdukt(produktTilLagring.id)">Lagre produkt</button>
 
     <p>{{ melding }}</p>
-    <li v-for="produkt in produkter" >
-      <button v-on:click="slettProdukt(produkt.id)">Slett</button>
-      <router-link :to="{name:'produkt_lagre', params:{ id: produkt.id }}">{{produkt.beskrivelse}} - pris: {{produkt.pris}}</router-link>
-    </li>
+    <table>
+      <tr>
+        <td>Administrer</td>
+        <td>Beskrivelse</td>
+        <td>Pris</td>
+      </tr>
 
+      <tr v-for="produkt in produkter">
+        <td>
+          <button v-on:click="slettProdukt(produkt.id)">Slett</button>
+          <button v-on:click="hentProdukt(produkt.id)">Endre</button>
+        </td>
+        <td>
+          {{produkt.beskrivelse}}
+        </td>
+        <td>
+          {{produkt.pris}}
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -27,20 +42,20 @@
         produktTilLagring: {
           id: '',
           beskrivelse: '',
-          pris:''
+          pris: ''
         }
       }
     },
     methods: {
-      tømFelter(){
+      tømFelter() {
         this.produktTilLagring.id = ''
-        this.produktTilLagring.beskrivelse= '',
+        this.produktTilLagring.beskrivelse = '',
           this.produktTilLagring.pris = ''
       },
-      lagreProdukt() {
+      lagreProdukt(id) {
         axios
-          .put('/api/produkt/' + this.$route.params.id,
-              this.produktTilLagring
+          .put('/api/produkt/' + id,
+            this.produktTilLagring
             , {
               headers: {
                 'Content-type': 'application/json'
@@ -85,6 +100,15 @@
           this.hentAlle()
         })
       },
+      hentProdukt(id) {
+        axios.get('/api/produkt/' + id, {},
+          {
+            headers: {
+              'Content-type': 'application/json',
+            }
+          }
+        ).then(response => (this.produktTilLagring = response.data))
+      },
       hentAlle() {
         axios.get('/api/produkt', {},
           {
@@ -104,24 +128,6 @@
     mounted() {
       console.log('hent alle')
       this.hentAlle()
-    },
-    watch: {
-      '$route.params.id'(newId, oldId) {
-        this.melding = ''
-        if (this.$route.params.id == undefined) {
-          'Opprett kunde'
-          return
-        }
-
-        axios.get('/api/produkt/' + this.$route.params.id, {},
-          {
-            headers: {
-              'Content-type': 'application/json',
-            }
-          }
-        ).then(response => (this.produktTilLagring = response.data))
-
-      }
     }
   }
 </script>

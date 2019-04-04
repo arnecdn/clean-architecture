@@ -2,13 +2,24 @@
   <div>
     <input v-model="selgerTilLagring.navn" placeholder="Selgernavn">
     <button v-if="selgerTilLagring.id == ''" v-on:click.stop.prevent="opprettSelger">Opprett selger</button>
-    <button v-if="selgerTilLagring.id != ''" v-on:click.stop.prevent="lagreSelger">Lagre selger</button>
-    <p>{{ melding }}</p>
-    <li v-for="selger in selgere">
-      <button v-on:click="slettSelger(selger.id)">Slett</button>
-      <router-link :to="{name:'selger_lagre', params:{ id: selger.id }}">{{selger.navn}}</router-link>
-    </li>
+    <button v-if="selgerTilLagring.id != ''" v-on:click.stop.prevent="lagreSelger(selgerTilLagring.id)">Lagre selger</button>
 
+    <p>{{ melding }}</p>
+    <table>
+      <tr>
+        <td>Administrer</td>
+        <td>Selger navn</td>
+      </tr>
+      <tr v-for="selger in selgere">
+        <td>
+          <button v-on:click="slettSelger(selger.id)">Slett</button>
+          <button v-on:click="hentAnsatt(selger.id)">Endre</button>
+        </td>
+        <td>
+          {{selger.navn}}
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -28,15 +39,16 @@
       }
     },
     methods: {
-      tømFelter(){
+      tømFelter() {
         this.selgerTilLagring.id = ''
-        this.selgerTilLagring.navn= ''
+        this.selgerTilLagring.navn = ''
       },
-      lagreSelger() {
+      lagreSelger(id) {
         axios
-          .put('/api/ansatt/' + this.$route.params.id, {
-              navn: this.selgerTilLagring.navn
-            }, {
+          .put('/api/ansatt/' + id,
+            this.selgerTilLagring
+            ,
+            {
               headers: {
                 'Content-type': 'application/json'
               }
@@ -46,7 +58,6 @@
             this.melding = 'Selger er oppdatert!'
             this.hentAlle()
             this.tømFelter()
-            this.$router.push('/selger')
           })
           .catch(error => {
             this.melding = "Feil. Sjekk console"
@@ -56,9 +67,9 @@
       opprettSelger() {
 
         axios
-          .put('/api/ansatt/', {
-              navn: this.selgerTilLagring.navn
-            }, {
+          .put('/api/ansatt/',
+            this.selgerTilLagring
+            , {
               headers: {
                 'Content-type': 'application/json'
               }
@@ -82,6 +93,15 @@
           this.hentAlle()
         })
       },
+      hentAnsatt(id) {
+        axios.get('/api/ansatt/' + id, {},
+          {
+            headers: {
+              'Content-type': 'application/json',
+            }
+          }
+        ).then(response => (this.selgerTilLagring = response.data))
+      },
       hentAlle() {
         axios.get('/api/ansatt', {},
           {
@@ -101,26 +121,6 @@
     mounted() {
       console.log('hent alle')
       this.hentAlle()
-    },
-    watch: {
-      '$route.params.id'(newId, oldId) {
-        this.melding = ''
-        if (this.$route.params.id == undefined) {
-          'Opprett selger'
-          return
-        }
-
-        var selgerId = this.$route.params.id
-
-        axios.get('/api/ansatt/' + selgerId, {},
-          {
-            headers: {
-              'Content-type': 'application/json',
-            }
-          }
-        ).then(response => (this.selgerTilLagring = response.data))
-
-      }
     }
   }
 </script>
