@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 open class ProduktCommandRepositoryH2Impl : ProduktCommandRepository {
     override fun endre(produkt: Produkt) {
-        crudRepo.save(ProduktEntitet(beskrivelse = produkt.beskrivelse, pris = produkt.pris))
+        crudRepo.save(ProduktEntitet(id=produkt.id, beskrivelse = produkt.beskrivelse, pris = produkt.pris))
     }
 
     override fun slett(produkt: Produkt) {

@@ -28,7 +28,10 @@
       }
     },
     methods: {
-
+      tømFelter(){
+        this.selgerTilLagring.id = ''
+        this.selgerTilLagring.navn= ''
+      },
       lagreSelger() {
         axios
           .put('/api/ansatt/' + this.$route.params.id, {
@@ -42,6 +45,8 @@
           .then(response => {
             this.melding = 'Selger er oppdatert!'
             this.hentAlle()
+            this.tømFelter()
+            this.$router.push('/selger')
           })
           .catch(error => {
             this.melding = "Feil. Sjekk console"
@@ -62,6 +67,7 @@
           .then(response => {
             this.melding = 'Selger er oppdatert!'
             this.hentAlle()
+            this.tømFelter()
           })
           .catch(error => {
             this.melding = "Feil. Sjekk console"

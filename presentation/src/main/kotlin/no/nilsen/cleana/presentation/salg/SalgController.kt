@@ -2,9 +2,7 @@ package no.nilsen.cleana.presentation.ansatt
 
 import no.nilsen.cleana.application.ansatt.command.OpprettSalgView
 import no.nilsen.cleana.application.ansatt.query.HentSalgView
-import no.nilsen.cleana.application.salg.command.OpprettSalgDto
-import no.nilsen.cleana.application.salg.command.OpprettSalgImpl
-import no.nilsen.cleana.application.salg.command.SalgCommandRepository
+import no.nilsen.cleana.application.salg.command.*
 import no.nilsen.cleana.application.salg.query.HentSalgImpl
 import no.nilsen.cleana.application.salg.query.SalgQueryRepository
 import no.nilsen.cleana.presentation.BaseController
@@ -13,7 +11,7 @@ import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 
 @RestController
-open class SalgController : BaseController(){
+open class SalgController : BaseController() {
 
     @Autowired
     lateinit var salgQueryReporitory: SalgQueryRepository
@@ -42,8 +40,20 @@ open class SalgController : BaseController(){
         return HentSalgImpl(salgQueryReporitory).hentSalgPerAnsatt(id).map { a -> HentSalgView(a.id, a.antall, a.totalPris, a.selger, a.kunde, a.produkt) }
     }
 
-    @PostMapping("salg", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    @PutMapping("salg", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun opprett(@RequestBody opprettSalgView: OpprettSalgView) {
         OpprettSalgImpl(salgCommandRepository).opprett(OpprettSalgDto(antall = opprettSalgView.antall, ansattId = opprettSalgView.selger, kundeId = opprettSalgView.kunde, produktId = opprettSalgView.produkt))
     }
+
+    @PutMapping("salg/{id}", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun endre(@PathVariable id: Int, @RequestBody opprettSalgView: OpprettSalgView) {
+        EndreSalgImpl(salgCommandRepository).endre(EndreSalgDto(id = id, antall = opprettSalgView.antall, ansattId = opprettSalgView.selger, kundeId = opprettSalgView.kunde, produktId = opprettSalgView.produkt))
+    }
+
+
+    @DeleteMapping("salg/{id}")
+    fun slett(@PathVariable id: Int) {
+        SlettSalgImpl(salgCommandRepository).slett(SlettSalgDto(id = id))
+    }
+
 }

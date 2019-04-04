@@ -40,4 +40,10 @@ open class KundeController : BaseController() {
     fun opprett(@RequestBody lagreKundeView: LagreKundeView) {
         OpprettKundeImpl(kundeCommandRepository).opprett(OpprettKundeDto(lagreKundeView.navn))
     }
+
+    @DeleteMapping("kunde/{id}")
+    fun slett(@PathVariable id: Int) {
+        SlettKundeImpl(kundeCommandRepository).slett(SlettKundeDto(id))
+    }
+
 }

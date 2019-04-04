@@ -1,8 +1,6 @@
 package no.nilsen.cleana.presentation.ansatt
 
-import no.nilsen.cleana.ansatt.command.OpprettProduktDto
-import no.nilsen.cleana.ansatt.command.OpprettProduktImpl
-import no.nilsen.cleana.ansatt.command.ProduktCommandRepository
+import no.nilsen.cleana.ansatt.command.*
 import no.nilsen.cleana.ansatt.query.HentProduktImpl
 import no.nilsen.cleana.ansatt.query.ProduktQueryReporitory
 import no.nilsen.cleana.application.ansatt.command.OpprettProduktView
@@ -11,10 +9,9 @@ import no.nilsen.cleana.presentation.BaseController
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import java.math.BigDecimal
 
 @RestController
-open class ProduktController: BaseController() {
+open class ProduktController : BaseController() {
 
     @Autowired
     lateinit var produktQueryReporitory: ProduktQueryReporitory
@@ -37,7 +34,18 @@ open class ProduktController: BaseController() {
 
     @PutMapping("/produkt", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun opprett(@RequestBody opprettProduktView: OpprettProduktView) {
-        val ProduktOppretter = OpprettProduktImpl(produktCommandRepository)
-        ProduktOppretter.opprett(OpprettProduktDto(beskrivelse = opprettProduktView.beskrivelse, pris = opprettProduktView.pris))
+        OpprettProduktImpl(produktCommandRepository).opprett(OpprettProduktDto(beskrivelse = opprettProduktView.beskrivelse, pris = opprettProduktView.pris))
     }
+
+    @PutMapping("/produkt/{id}", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
+    fun oppdater(@PathVariable id: Int, @RequestBody opprettProduktView: OpprettProduktView) {
+        EndreProduktImpl(produktCommandRepository).endre(EndreProduktDto(id = id, beskrivelse = opprettProduktView.beskrivelse, pris = opprettProduktView.pris))
+    }
+
+
+    @DeleteMapping("/produkt/{id}")
+    fun slett(@PathVariable id: Int) {
+        SlettProduktImpl(produktCommandRepository).slett(SlettProduktDto(id = id))
+    }
+
 }
