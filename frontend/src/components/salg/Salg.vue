@@ -1,7 +1,7 @@
 <template>
   <div>
     <select v-model="produkter">
-      <option v-for="produkt in produkter" :key="produkt.id" :value="produkt.id">{{ produkt.beskrivelse }}</option>
+      <option v-for="p in produkter" :key="p.id" :value="p.id">{{ p.beskrivelse }}</option>
     </select>
 
     <input v-model="salgTilLagring.produkt" placeholder="Produkt">
@@ -42,11 +42,11 @@
 
     data() {
       return {
-        produkter: [],
+
         selgere: [],
         kunder: [],
+        produkter: [],
         melding: "",
-        knappTekst: 'Opprett salg',
         salgsListe: [],
         salgTilLagring: {
           id: '',
@@ -122,40 +122,41 @@
         ).then(response => (this.salgTilLagring = response.data))
       },
       hentAlleSalg() {
-        axios.get('/api/salg', {},
+        return axios.get('/api/salg', {},
           {
             headers: {
               'Content-type': 'application/json',
             }
           }
-        ).then(response => (this.salgsListe = response.data))
-          .catch(error => {
-            this.melding = "Feil. Sjekk console"
-            console.log(error.response)
-          });
-
+        )
       },
       hentAlleProdukter() {
-        axios.get('/api/produkt', {},
+        return axios.get('/api/produkt', {},
           {
             headers: {
               'Content-type': 'application/json',
             }
           }
-        ).then(response => (this.produkter = response.data))
-          .catch(error => {
-            this.melding = "Feil. Sjekk console"
-            console.log(error.response)
-          });
+        )
+      },
+      hentAlt(){
+        axios.all(this.hentAlleSalg(), this.hentAlleProdukter())
+          .then(axios.spread((salgsRespons, produktRespons ) => {
+            this.salgsListe = salgsRespons.data
+            this.produkter = produktRespons.data
 
+        }));
       }
 
     },
 
     mounted() {
-      console.log('hent alle')
-      this.hentAlleSalg()
-      this.hentAlleProdukter()
+      console.log('hent alt under montering av template')
+      this.hentAlt()
+      //this.hentAlleProdukter()
+
+      console.log('hent alle salg' + this.salgsListe)
+      console.log('hent alle produkter' + this.produkter);
     }
   }
 </script>
