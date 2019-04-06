@@ -41,7 +41,12 @@ open class SalgQueryRepositoryH2Impl : SalgQueryRepository {
     }
 
     private fun byggSalgsAggregatEnkelt(salg: SalgEntitet): Salg {
-        val kundeSalg = kundeRepo.findById(salg.kunde).map { a -> Kunde(id = a.id, navn = a.navn) }.get()
+        val eksisterendeSalg = kundeRepo.findById(salg.kunde)
+        if(! eksisterendeSalg.isPresent){
+            return Salg()
+        }
+
+        val kundeSalg = eksisterendeSalg.map { a -> Kunde(id = a.id, navn = a.navn) }.get()
         val selger = ansattRepo.findById(salg.selger).map { a -> Ansatt(id = a.id, navn = a.navn) }.get()
         val produkt = produktRepo.findById(salg.produkt).map { p -> Produkt(id = p.id, beskrivelse = p.beskrivelse, pris = p.pris) }.get()
 
