@@ -3,7 +3,6 @@ package no.nilsen.cleana.presentation.ansatt
 import no.nilsen.cleana.application.ansatt.command.*
 import no.nilsen.cleana.application.ansatt.query.AnsattQueryReporitory
 import no.nilsen.cleana.application.ansatt.query.HentAnsattImpl
-import no.nilsen.cleana.application.ansatt.query.HentAnsattView
 import no.nilsen.cleana.presentation.BaseController
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType

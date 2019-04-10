@@ -3,9 +3,6 @@ package no.nilsen.cleana.persistence.ansatt
 import junit.framework.Assert.assertTrue
 import no.nilsen.cleana.domain.ansatt.Ansatt
 import no.nilsen.cleana.persistence.PersistenceConfig
-import no.nilsen.cleana.persistence.kunde.KundeEntitet
-import no.nilsen.cleana.persistence.kunde.ProduktEntitet
-import no.nilsen.cleana.persistence.salg.SalgEntitet
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -32,7 +29,6 @@ open class AnsattCrudRepositoryH2ImplTest {
         val findById = ansattRepo.ansattCrudRepo.findById(1)
         assertTrue(findById.get().navn.equals("Arne Nilsen"))
     }
-
 
 
 }

@@ -1,4 +1,4 @@
-package no.nilsen.cleana.ansatt.query
+package no.nilsen.cleana.application.produkt.query
 
 class HentProduktImpl(var repo: ProduktQueryReporitory) : HentProdukt {
     override fun hentAlle(): List<HentProduktDto> {

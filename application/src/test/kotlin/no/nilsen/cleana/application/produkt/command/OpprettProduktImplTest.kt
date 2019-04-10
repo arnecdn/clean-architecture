@@ -1,9 +1,6 @@
 package no.nilsen.cleana.application.produkt.command
 
-import no.nilsen.cleana.ansatt.command.OpprettProduktDto
-import no.nilsen.cleana.ansatt.command.OpprettProduktImpl
-import no.nilsen.cleana.ansatt.command.ProduktCommandRepository
-import no.nilsen.cleana.produkt.Produkt
+import no.nilsen.cleana.domain.produkt.Produkt
 import org.junit.jupiter.api.Test
 import java.math.BigDecimal
 

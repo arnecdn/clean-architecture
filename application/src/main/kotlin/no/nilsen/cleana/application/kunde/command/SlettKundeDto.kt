@@ -1,4 +1,4 @@
-package no.nilsen.cleana.ansatt.command
+package no.nilsen.cleana.application.kunde.command
 
 class SlettKundeDto(val id: Int) {
 }

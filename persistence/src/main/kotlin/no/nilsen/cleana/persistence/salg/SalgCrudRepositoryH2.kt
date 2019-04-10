@@ -1,6 +1,5 @@
-package no.nilsen.cleana.persistence.kunde
+package no.nilsen.cleana.persistence.salg
 
-import no.nilsen.cleana.persistence.salg.SalgEntitet
 import org.springframework.data.repository.CrudRepository
 
 

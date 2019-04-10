@@ -1,6 +1,6 @@
 package no.nilsen.cleana.application.salg.query
 
-import no.nilsen.cleana.salg.Salg
+import no.nilsen.cleana.domain.salg.Salg
 
 interface SalgQueryRepository {
     fun hent(id: Int): Salg?

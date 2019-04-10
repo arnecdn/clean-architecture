@@ -1,4 +1,4 @@
-package no.nilsen.cleana.ansatt.query
+package no.nilsen.cleana.application.kunde.query
 
 class HentKundeImpl(var repo: KundeQueryReporitory) : HentKunde {
     override fun hentAlle(): List<HentKundeDto> {

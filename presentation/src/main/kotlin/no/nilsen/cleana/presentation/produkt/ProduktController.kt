@@ -1,10 +1,8 @@
-package no.nilsen.cleana.presentation.ansatt
+package no.nilsen.cleana.presentation.produkt
 
-import no.nilsen.cleana.ansatt.command.*
-import no.nilsen.cleana.ansatt.query.HentProduktImpl
-import no.nilsen.cleana.ansatt.query.ProduktQueryReporitory
-import no.nilsen.cleana.application.ansatt.command.OpprettProduktView
-import no.nilsen.cleana.application.ansatt.query.HentProduktView
+import no.nilsen.cleana.application.produkt.command.*
+import no.nilsen.cleana.application.produkt.query.HentProduktImpl
+import no.nilsen.cleana.application.produkt.query.ProduktQueryReporitory
 import no.nilsen.cleana.presentation.BaseController
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType

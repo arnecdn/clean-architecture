@@ -4,4 +4,4 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "Kunde")
-open class KundeEntitet(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int = 0, val navn: String = "")
+open class KundeEntitet(@Id @GeneratedValue(strategy = GenerationType.IDENTITY) open val id: Int = 0, open val navn: String = "")

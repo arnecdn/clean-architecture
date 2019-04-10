@@ -4,9 +4,9 @@ import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.hasSize
 import no.nilsen.cleana.domain.ansatt.Ansatt
-import no.nilsen.cleana.kunde.Kunde
-import no.nilsen.cleana.produkt.Produkt
-import no.nilsen.cleana.salg.Salg
+import no.nilsen.cleana.domain.kunde.Kunde
+import no.nilsen.cleana.domain.produkt.Produkt
+import no.nilsen.cleana.domain.salg.Salg
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance

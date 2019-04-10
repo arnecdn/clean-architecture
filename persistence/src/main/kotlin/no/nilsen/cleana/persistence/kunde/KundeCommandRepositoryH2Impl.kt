@@ -1,7 +1,7 @@
 package no.nilsen.cleana.persistence.kunde
 
-import no.nilsen.cleana.ansatt.command.KundeCommandRepository
-import no.nilsen.cleana.kunde.Kunde
+import no.nilsen.cleana.application.kunde.command.KundeCommandRepository
+import no.nilsen.cleana.domain.kunde.Kunde
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 

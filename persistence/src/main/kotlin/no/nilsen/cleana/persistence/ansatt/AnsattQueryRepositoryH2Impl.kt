@@ -1,22 +1,20 @@
 package no.nilsen.cleana.persistence.ansatt
 
-import no.nilsen.cleana.application.ansatt.command.AnsattCommandRepository
 import no.nilsen.cleana.application.ansatt.query.AnsattQueryReporitory
 import no.nilsen.cleana.domain.ansatt.Ansatt
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
-import org.springframework.stereotype.Service
 
 
 @Repository
-open class AnsattQueryRepositoryH2Impl : AnsattQueryReporitory{
+open class AnsattQueryRepositoryH2Impl : AnsattQueryReporitory {
     override fun hentAlle(): List<Ansatt> {
-        return ansattCrudRepo.findAll().map { a  -> Ansatt(id=a.id, navn=a.navn) }
+        return ansattCrudRepo.findAll().map { a -> Ansatt(id = a.id, navn = a.navn) }
     }
 
     override fun hent(id: Int): Ansatt {
         val findById = ansattCrudRepo.findById(id)
-        return findById.map { a  -> Ansatt(id=a.id, navn=a.navn)}.get()
+        return findById.map { a -> Ansatt(id = a.id, navn = a.navn) }.get()
     }
 
     @Autowired

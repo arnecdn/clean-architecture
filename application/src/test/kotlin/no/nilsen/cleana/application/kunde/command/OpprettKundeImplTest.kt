@@ -1,9 +1,6 @@
 package no.nilsen.cleana.application.kunde.command
 
-import no.nilsen.cleana.ansatt.command.KundeCommandRepository
-import no.nilsen.cleana.ansatt.command.OpprettKundeDto
-import no.nilsen.cleana.ansatt.command.OpprettKundeImpl
-import no.nilsen.cleana.kunde.Kunde
+import no.nilsen.cleana.domain.kunde.Kunde
 import org.junit.jupiter.api.Test
 import kotlin.test.assertTrue
 

@@ -1,6 +1,6 @@
-package no.nilsen.cleana.ansatt.query
+package no.nilsen.cleana.application.kunde.query
 
-import no.nilsen.cleana.kunde.Kunde
+import no.nilsen.cleana.domain.kunde.Kunde
 
 interface KundeQueryReporitory {
     fun hentAlle(): List<Kunde>

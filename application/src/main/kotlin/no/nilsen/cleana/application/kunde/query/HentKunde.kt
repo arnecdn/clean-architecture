@@ -1,4 +1,4 @@
-package no.nilsen.cleana.ansatt.query
+package no.nilsen.cleana.application.kunde.query
 
 
 interface HentKunde {

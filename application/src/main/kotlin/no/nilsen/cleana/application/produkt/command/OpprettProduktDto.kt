@@ -1,4 +1,4 @@
-package no.nilsen.cleana.ansatt.command
+package no.nilsen.cleana.application.produkt.command
 
 import java.math.BigDecimal
 

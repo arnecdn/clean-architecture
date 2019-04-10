@@ -1,6 +1,7 @@
-package no.nilsen.cleana.application.ansatt.command
+package no.nilsen.cleana.presentation.ansatt
 
 import com.fasterxml.jackson.annotation.JsonCreator
 
 data class LagreAnsattView @JsonCreator constructor(var navn: String) {
+
 }

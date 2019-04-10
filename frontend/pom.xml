@@ -9,8 +9,14 @@
 
   <name>Clean Architecture - Parent</name>
   <description>Demo project for Spring Boot</description>
-  <build>
 
+  <parent>
+    <groupId>no.nilsen.cleana</groupId>
+    <artifactId>clean-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <build>
     <plugins>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

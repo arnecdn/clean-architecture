@@ -1,4 +1,4 @@
-package no.nilsen.cleana.persistence.kunde
+package no.nilsen.cleana.persistence.produkt
 
 import org.springframework.data.repository.CrudRepository
 

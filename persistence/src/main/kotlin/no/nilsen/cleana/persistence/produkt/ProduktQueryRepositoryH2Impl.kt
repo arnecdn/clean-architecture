@@ -1,7 +1,7 @@
-package no.nilsen.cleana.persistence.kunde
+package no.nilsen.cleana.persistence.produkt
 
-import no.nilsen.cleana.ansatt.query.ProduktQueryReporitory
-import no.nilsen.cleana.produkt.Produkt
+import no.nilsen.cleana.application.produkt.query.ProduktQueryReporitory
+import no.nilsen.cleana.domain.produkt.Produkt
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 open class ProduktQueryRepositoryH2Impl : ProduktQueryReporitory {
     override fun hentAlle(): List<Produkt> {
-        return crudRepo.findAll().map { p -> Produkt(id=p.id, beskrivelse = p.beskrivelse, pris = p.pris) }
+        return crudRepo.findAll().map { p -> Produkt(id = p.id, beskrivelse = p.beskrivelse, pris = p.pris) }
 
     }
 

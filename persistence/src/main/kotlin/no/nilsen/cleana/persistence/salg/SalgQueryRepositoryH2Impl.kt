@@ -1,12 +1,13 @@
-package no.nilsen.cleana.persistence.kunde
+package no.nilsen.cleana.persistence.salg
 
 import no.nilsen.cleana.application.salg.query.SalgQueryRepository
 import no.nilsen.cleana.domain.ansatt.Ansatt
-import no.nilsen.cleana.kunde.Kunde
-import no.nilsen.cleana.produkt.Produkt
-import no.nilsen.cleana.salg.Salg
+import no.nilsen.cleana.domain.kunde.Kunde
+import no.nilsen.cleana.domain.produkt.Produkt
+import no.nilsen.cleana.domain.salg.Salg
 import no.nilsen.cleana.persistence.ansatt.AnsattCrudRepositoryH2
-import no.nilsen.cleana.persistence.salg.SalgEntitet
+import no.nilsen.cleana.persistence.kunde.KundeCrudRepositoryH2
+import no.nilsen.cleana.persistence.produkt.ProduktCrudRepositoryH2
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
@@ -37,12 +38,12 @@ open class SalgQueryRepositoryH2Impl : SalgQueryRepository {
 
 
     private fun byggSalgsAggregat(salgsEntiteter: List<SalgEntitet>): List<Salg> {
-        return salgsEntiteter.map { s -> byggSalgsAggregatEnkelt(s)}
+        return salgsEntiteter.map { s -> byggSalgsAggregatEnkelt(s) }
     }
 
     private fun byggSalgsAggregatEnkelt(salg: SalgEntitet): Salg {
         val eksisterendeSalg = kundeRepo.findById(salg.kunde)
-        if(! eksisterendeSalg.isPresent){
+        if (!eksisterendeSalg.isPresent) {
             return Salg()
         }
 
