@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc
 @SpringBootApplication
 @ComponentScan("no.nilsen.cleana")
 open class SpringBootKotlinApplication
+
 fun main(args: Array<String>) {
     runApplication<SpringBootKotlinApplication>(*args)
 }
