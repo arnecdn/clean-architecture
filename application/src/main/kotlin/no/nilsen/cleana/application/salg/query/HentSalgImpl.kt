@@ -6,23 +6,23 @@ import no.nilsen.cleana.application.produkt.query.HentProduktDto
 import no.nilsen.cleana.domain.salg.Salg
 
 class HentSalgImpl(val repo: SalgQueryRepository) : HentSalg {
-    val salgMapper: (Salg) -> HentSalgDto = { salg -> HentSalgDto(salg.id, salg.antall, salg.totalPris(), HentAnsattDto(salg.selger), HentKundeDto(salg.kunde), HentProduktDto(salg.produkt)) }
+
+    fun Salg.toHentSalgDto(): HentSalgDto = HentSalgDto(this.id, this.antall, this.totalPris(), HentAnsattDto(this.selger), HentKundeDto(this.kunde), HentProduktDto(this.produkt))
 
     override fun hentAlle(): List<HentSalgDto> {
-        return repo.hentAlleSalg().map { s -> salgMapper(s) }
+        return repo.hentAlleSalg().map { s -> s.toHentSalgDto() }
     }
 
     override fun hent(id: Int): HentSalgDto {
-        val salg = repo.hent(id)
-        return HentSalgDto(salg!!.id, salg.antall, salg.totalPris(), HentAnsattDto(salg.selger), HentKundeDto(salg.kunde), HentProduktDto(salg.produkt))
+        return repo.hent(id)!!.toHentSalgDto()
     }
 
     override fun hentSalgPerKunde(kundeId: Int): List<HentSalgDto> {
-        return repo.hentSalgPerKunde(kundeId).map { s -> salgMapper(s) }
+        return repo.hentSalgPerKunde(kundeId).map { s -> s.toHentSalgDto() }
     }
 
     override fun hentSalgPerAnsatt(ansattId: Int): List<HentSalgDto> {
-        return repo.hentSalgPerAnsatt(ansattId).map { s -> salgMapper(s) }
+        return repo.hentSalgPerAnsatt(ansattId).map { s -> s.toHentSalgDto() }
     }
 
 }

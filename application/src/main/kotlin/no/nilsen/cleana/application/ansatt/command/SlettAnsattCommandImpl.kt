@@ -4,7 +4,7 @@ import no.nilsen.cleana.domain.ansatt.Ansatt
 
 class SlettAnsattCommandImpl(val repo: AnsattCommandRepository) : SlettAnsattCommand {
     override fun slett(a: SlettAnsattDto) {
-        repo.slett(ansatt = Ansatt(id = a.id))
+        repo.slett(ansattTilSletting = Ansatt(id = a.id))
     }
 
 }

@@ -8,18 +8,18 @@ import org.springframework.stereotype.Repository
 
 @Repository
 open class AnsattCommandRepositoryH2Impl : AnsattCommandRepository {
-    override fun slett(ansatt: Ansatt) {
-        ansattCrudRepo.delete(AnsattEntitet(id = ansatt.id))
+    override fun slett(ansattTilSletting: Ansatt) {
+        ansattCrudRepo.delete(AnsattEntitet(id = ansattTilSletting.id))
     }
 
-    override fun endre(ansatt: Ansatt) {
-        ansattCrudRepo.save(AnsattEntitet(id = ansatt.id, navn = ansatt.navn))
+    override fun endre(oppdatertAnsatt: Ansatt) {
+        ansattCrudRepo.save(AnsattEntitet(id = oppdatertAnsatt.id, navn = oppdatertAnsatt.navn))
     }
 
     @Autowired
     lateinit var ansattCrudRepo: AnsattCrudRepositoryH2
 
-    override fun opprett(ansatt: Ansatt) {
-        ansattCrudRepo.save(AnsattEntitet(navn = ansatt.navn))
+    override fun opprett(nyAnsatt: Ansatt) {
+        ansattCrudRepo.save(AnsattEntitet(navn = nyAnsatt.navn))
     }
 }

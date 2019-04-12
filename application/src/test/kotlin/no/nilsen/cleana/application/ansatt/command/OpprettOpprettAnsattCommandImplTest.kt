@@ -21,19 +21,19 @@ class OpprettOpprettAnsattCommandImplTest {
 
 
     class AnsattCommandRepositoryMap : AnsattCommandRepository {
-        override fun slett(ansatt: Ansatt) {
-            ansatte.remove(ansatt.id)
+        override fun slett(ansattTilSletting: Ansatt) {
+            ansatte.remove(ansattTilSletting.id)
         }
 
-        override fun endre(ansatt: Ansatt) {
-            val ny = Ansatt(ansatt.id, ansatt.navn)
+        override fun endre(oppdatertAnsatt: Ansatt) {
+            val ny = Ansatt(oppdatertAnsatt.id, oppdatertAnsatt.navn)
             ansatte.put(ny.id, ny)
         }
 
         val ansatte: MutableMap<Int, Ansatt> = hashMapOf()
 
-        override fun opprett(ansatt: Ansatt) {
-            val ny = Ansatt(ansatte.size + 1, ansatt.navn)
+        override fun opprett(nyAnsatt: Ansatt) {
+            val ny = Ansatt(ansatte.size + 1, nyAnsatt.navn)
             ansatte.put(ny.id, ny)
         }
 

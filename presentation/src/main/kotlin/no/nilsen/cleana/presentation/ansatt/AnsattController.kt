@@ -31,7 +31,6 @@ open class AnsattController : BaseController() {
         return HentAnsattImpl(ansattQueryReporitory).hentAlle().map { a -> HentAnsattView(a.id, a.navn) }
     }
 
-
     @PutMapping("ansatt", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun opprettAnsatt(@RequestBody lagreAnsattView: LagreAnsattView) {
         OpprettOpprettAnsattCommandImpl(ansattCommandRepository).opprett(OpprettAnsattDto(lagreAnsattView.navn))
@@ -42,7 +41,6 @@ open class AnsattController : BaseController() {
     fun endreAnsatt(@PathVariable id: Int, @RequestBody ansattView: LagreAnsattView) {
         EndreAnsattCommandImpl(ansattCommandRepository).endre(EndreAnsattDto(id, ansattView.navn))
     }
-
 
     @DeleteMapping("ansatt/{id}")
     fun slett(@PathVariable id: Int) {
