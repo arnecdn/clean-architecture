@@ -1,4 +1,4 @@
-package no.nilsen.cleana.presentation.ansatt
+package no.nilsen.cleana.api.ansatt
 
 import no.nilsen.cleana.application.ansatt.query.HentAnsattDto
 

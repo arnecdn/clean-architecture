@@ -1,4 +1,4 @@
-package no.nilsen.cleana.presentation.produkt
+package no.nilsen.cleana.api.produkt
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import no.nilsen.cleana.application.produkt.query.HentProduktDto

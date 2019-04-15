@@ -1,4 +1,4 @@
-package no.nilsen.cleana.presentation.ansatt
+package no.nilsen.cleana.api.ansatt
 
 import com.fasterxml.jackson.annotation.JsonCreator
 

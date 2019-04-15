@@ -1,0 +1,32 @@
+type Query{
+  salg: [Salg],
+  kunde(id : Int) : Kunde
+  selger(id : Int) : Ansatt
+  produkt(id : Int) : Produkt
+}
+
+type Salg{
+  antall: Int
+  totalPris: Float
+  selger: Ansatt
+  kunde: Kunde
+  produkt: Produkt
+}
+
+type Ansatt{
+  id: ID,
+  navn: String
+}
+
+
+type Kunde{
+  id: ID,
+  navn: String
+}
+
+
+type Produkt{
+  id: ID,
+  beskrivelse: String,
+  pris: Float
+}

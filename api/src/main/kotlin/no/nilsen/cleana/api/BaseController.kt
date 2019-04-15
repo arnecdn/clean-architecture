@@ -1,4 +1,4 @@
-package no.nilsen.cleana.presentation
+package no.nilsen.cleana.api
 
 import org.springframework.web.bind.annotation.RequestMapping
 

@@ -1,4 +1,4 @@
-package no.nilsen.cleana.presentation.kunde
+package no.nilsen.cleana.api.kunde
 
 import no.nilsen.cleana.application.kunde.query.HentKundeDto
 

@@ -1,10 +1,10 @@
-package no.nilsen.cleana.presentation.kunde
+package no.nilsen.cleana.api.kunde
 
 import no.nilsen.cleana.application.ansatt.command.LagreKundeView
 import no.nilsen.cleana.application.kunde.command.*
 import no.nilsen.cleana.application.kunde.query.HentKundeImpl
 import no.nilsen.cleana.application.kunde.query.KundeQueryReporitory
-import no.nilsen.cleana.presentation.BaseController
+import no.nilsen.cleana.api.BaseController
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*

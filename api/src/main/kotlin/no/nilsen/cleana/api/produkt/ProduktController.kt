@@ -1,9 +1,9 @@
-package no.nilsen.cleana.presentation.produkt
+package no.nilsen.cleana.api.produkt
 
 import no.nilsen.cleana.application.produkt.command.*
 import no.nilsen.cleana.application.produkt.query.HentProduktImpl
 import no.nilsen.cleana.application.produkt.query.ProduktQueryReporitory
-import no.nilsen.cleana.presentation.BaseController
+import no.nilsen.cleana.api.BaseController
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*

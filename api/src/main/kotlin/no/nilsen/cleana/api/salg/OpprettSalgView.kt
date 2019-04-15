@@ -1,4 +1,4 @@
-package no.nilsen.cleana.presentation.salg
+package no.nilsen.cleana.api.salg
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import java.math.BigDecimal
