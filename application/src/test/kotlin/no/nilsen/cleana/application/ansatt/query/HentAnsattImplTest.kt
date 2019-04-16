@@ -32,11 +32,6 @@ class HentAnsattImplTest {
         assertThat(hent.navn, startsWith(HE_ISANN))
     }
 
-    @Test
-    fun skalHenteAlle() {
-        val hentAlle = hentAnsatte.hentAlle()
-        assertThat(hentAlle, hasSize(equalTo(2)))
-    }
 
 
     class AnsattQueryRepositoryMap : AnsattQueryReporitory {

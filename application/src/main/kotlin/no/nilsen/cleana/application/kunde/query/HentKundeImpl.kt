@@ -1,13 +1,10 @@
 package no.nilsen.cleana.application.kunde.query
 
 class HentKundeImpl(var repo: KundeQueryReporitory) : HentKunde {
-    override fun hentAlle(): List<HentKundeDto> {
-        return repo.hentAlle().map { k -> HentKundeDto(id = k.id, navn = k.navn) }
-    }
 
-    override fun hent(id: Int): HentKundeDto {
+    override fun hent(id: Int): KundeDto {
         val k = repo.hent(id)
-        return HentKundeDto(id = k.id, navn = k.navn)
+        return KundeDto(id = k.id, navn = k.navn)
     }
 
 

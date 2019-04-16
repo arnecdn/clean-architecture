@@ -5,13 +5,13 @@ import no.nilsen.cleana.application.kunde.query.KundeDto
 import no.nilsen.cleana.application.produkt.query.ProduktDto
 import no.nilsen.cleana.domain.salg.Salg
 
-class HentSalgImpl(val repo: SalgQueryRepository) : HentSalg {
+class HentSalgPrAnsattImpl(val repo: SalgQueryRepository) : HentSalgPrAnsatt {
 
     fun Salg.toHentSalgDto(): SalgDto = SalgDto(this.id, this.antall, this.totalPris(), AnsattDto(this.selger), KundeDto(this.kunde), ProduktDto(this.produkt))
 
 
-    override fun hent(id: Int): SalgDto {
-        return repo.hent(id)!!.toHentSalgDto()
+    override fun hentSalgPerAnsatt(ansattId: Int): List<SalgDto> {
+        return repo.hentSalgPerAnsatt(ansattId).map { s -> s.toHentSalgDto() }
     }
 
 }

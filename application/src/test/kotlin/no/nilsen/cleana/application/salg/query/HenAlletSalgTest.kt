@@ -11,12 +11,11 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
 import java.math.BigDecimal
-import kotlin.test.assertTrue
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class HentSalgImplTest {
+class HenAlletSalgTest {
     val repo = SalgQueryRepositoryMap()
-    val henSalg = HentSalgImpl(repo)
+    val henSalg = HentAlleSalgImpl(repo)
 
     @BeforeAll
     fun før() {
@@ -31,25 +30,6 @@ class HentSalgImplTest {
         repo.opprett(Salg(antall = 2, selger = hanSolo, kunde = lukeSkywalker, produkt = laserPistol))
         repo.opprett(Salg(antall = 5, selger = chewebacca, kunde = lukeSkywalker, produkt = laserPistol))
         repo.opprett(Salg(antall = 10, selger = chewebacca, kunde = willWheaton, produkt = laserPistol))
-    }
-
-
-    @Test
-    fun skalHenteEnkeltSalg() {
-        val salgDto = henSalg.hent(1)
-        assertTrue(salgDto!!.id.equals(1))
-    }
-
-    @Test
-    fun skalHenteEnkeltSalgForKunde() {
-        val kundeSalg = henSalg.hentSalgPerKunde(1)
-        assertThat(kundeSalg, hasSize(equalTo(2)))
-    }
-
-    @Test
-    fun skalHenteEnkeltSalgForAnsatt() {
-        val ansattSalg = henSalg.hentSalgPerAnsatt(1)
-        assertThat(ansattSalg, hasSize(equalTo(2)))
     }
 
     @Test

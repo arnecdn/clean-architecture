@@ -2,7 +2,6 @@ package no.nilsen.cleana.application.kunde.query
 
 import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
-import com.natpryce.hamkrest.hasSize
 import no.nilsen.cleana.domain.kunde.Kunde
 import org.junit.jupiter.api.Test
 import java.util.*
@@ -20,16 +19,6 @@ class HentKundeImplTest {
 
         val kundeDto = hentKunde.hent(1)
         assertThat(kundeDto.navn, equalTo("Tom Tom"))
-    }
-
-
-    @Test
-    fun skalHenteAlleKunder() {
-        repo.opprett(Kunde(navn = "Tom Tom"))
-        repo.opprett(Kunde(navn = "Ben Ben"))
-
-        val alleKunder = hentKunde.hentAlle()
-        assertThat(alleKunder, hasSize(equalTo(2)))
     }
 
 

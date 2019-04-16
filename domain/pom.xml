@@ -12,10 +12,6 @@
   <name>Clean Architecture - Domain</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
-    <kotlin.version>1.3.21</kotlin.version>
-  </properties>
-
   <parent>
     <groupId>no.nilsen.cleana</groupId>
     <artifactId>clean-parent</artifactId>
@@ -62,7 +58,6 @@
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
-        <version>${kotlin.version}</version>
         <executions>
           <execution>
             <id>compile</id>

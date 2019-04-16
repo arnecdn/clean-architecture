@@ -10,10 +10,6 @@
   <name>Clean Architecture - Bootstrap</name>
   <description>Demo project for Spring Boot</description>
 
-  <properties>
-    <kotlin.version>1.3.21</kotlin.version>
-  </properties>
-
 
   <parent>
     <groupId>no.nilsen.cleana</groupId>
@@ -79,12 +75,10 @@
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib-jdk8</artifactId>
-      <version>${kotlin.version}</version>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-test</artifactId>
-      <version>${kotlin.version}</version>
       <scope>test</scope>
     </dependency>
 
