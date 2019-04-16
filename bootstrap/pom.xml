@@ -22,7 +22,7 @@
 
     <dependency>
       <groupId>no.nilsen.cleana</groupId>
-      <artifactId>presentation</artifactId>
+      <artifactId>api</artifactId>
     </dependency>
     <dependency>
       <groupId>com.h2database</groupId>

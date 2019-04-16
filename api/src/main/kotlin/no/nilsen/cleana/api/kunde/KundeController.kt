@@ -1,7 +1,7 @@
 package no.nilsen.cleana.api.kunde
 
 import no.nilsen.cleana.api.BaseController
-import no.nilsen.cleana.application.ansatt.command.LagreKundeView
+import no.nilsen.cleana.api.kunde.command.LagreKundeView
 import no.nilsen.cleana.application.kunde.command.*
 import no.nilsen.cleana.application.kunde.query.HentAlleKunderImpl
 import no.nilsen.cleana.application.kunde.query.HentKundeImpl
