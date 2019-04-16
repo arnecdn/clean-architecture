@@ -29,8 +29,8 @@ internal class OpprettSalgImplTest {
 
         val salgMap: MutableMap<Int, Salg> = hashMapOf()
 
-        override fun opprett(nyttSalg: Salg) {
-            val s = Salg(salgMap.size + 1, nyttSalg.antall, nyttSalg.selger, nyttSalg.kunde, nyttSalg.produkt)
+        override fun opprett(salg: Salg) {
+            val s = Salg(salgMap.size + 1, salg.antall, salg.selger, salg.kunde, salg.produkt)
             salgMap.put(s.id, s)
         }
 

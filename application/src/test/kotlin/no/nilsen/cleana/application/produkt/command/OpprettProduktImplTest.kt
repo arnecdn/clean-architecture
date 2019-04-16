@@ -28,8 +28,8 @@ class OpprettProduktImplTest {
 
         var produkter: MutableMap<Int, Produkt> = hashMapOf()
 
-        override fun opprett(k: Produkt) {
-            val nytt = Produkt(produkter.size + 1, k.beskrivelse, k.pris)
+        override fun opprett(produkt: Produkt) {
+            val nytt = Produkt(produkter.size + 1, produkt.beskrivelse, produkt.pris)
             produkter.put(nytt.id, nytt)
         }
 

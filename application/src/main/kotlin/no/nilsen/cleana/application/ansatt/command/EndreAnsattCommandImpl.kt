@@ -3,8 +3,8 @@ package no.nilsen.cleana.application.ansatt.command
 import no.nilsen.cleana.domain.ansatt.Ansatt
 
 class EndreAnsattCommandImpl(val repo: AnsattCommandRepository) : EndreAnsattCommand {
-    override fun endre(a: EndreAnsattDto) {
-        repo.endre(oppdatertAnsatt = Ansatt(id = a.id, navn = a.navn))
+    override fun endre(endreAnsattDto: EndreAnsattDto) {
+        repo.endre(oppdatertAnsatt = Ansatt(id = endreAnsattDto.id, navn = endreAnsattDto.navn))
     }
 
 }

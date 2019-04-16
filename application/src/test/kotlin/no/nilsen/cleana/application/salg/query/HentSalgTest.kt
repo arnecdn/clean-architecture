@@ -37,7 +37,7 @@ class HentSalgTest {
     @Test
     fun skalHenteEnkeltSalg() {
         val salgDto = henSalg.hent(1)
-        assertTrue(salgDto!!.id.equals(1))
+        assertTrue(salgDto.id.equals(1))
     }
 
 

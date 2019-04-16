@@ -4,7 +4,7 @@ import no.nilsen.cleana.domain.salg.Salg
 
 class SlettSalgImpl(val repo: SalgCommandRepository) : SlettSalg {
 
-    override fun slett(s: SlettSalgDto) {
-        repo.slett(Salg(id = s.id))
+    override fun slett(slettSalgDto: SlettSalgDto) {
+        repo.slett(Salg(id = slettSalgDto.id))
     }
 }

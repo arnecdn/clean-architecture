@@ -34,8 +34,8 @@ internal class OpprettKundeImplTest {
 
         var kunder: MutableMap<Int, Kunde> = hashMapOf()
 
-        override fun opprett(k: Kunde) {
-            val nyKunde = Kunde(kunder.size + 1, k.navn)
+        override fun opprett(kunde: Kunde) {
+            val nyKunde = Kunde(kunder.size + 1, kunde.navn)
             kunder.put(nyKunde.id, nyKunde)
         }
 

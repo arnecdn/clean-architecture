@@ -7,7 +7,7 @@ import no.nilsen.cleana.domain.salg.Salg
 
 class EndreSalgImpl(val repo: SalgCommandRepository) : EndreSalg {
 
-    override fun endre(s: EndreSalgDto) {
-        repo.endre(Salg(id = s.id, antall = s.antall, selger = Ansatt(id = s.ansattId), kunde = Kunde(id = s.kundeId), produkt = Produkt(id = s.produktId)))
+    override fun endre(endreSalgDto: EndreSalgDto) {
+        repo.endre(Salg(id = endreSalgDto.id, antall = endreSalgDto.antall, selger = Ansatt(id = endreSalgDto.ansattId), kunde = Kunde(id = endreSalgDto.kundeId), produkt = Produkt(id = endreSalgDto.produktId)))
     }
 }
