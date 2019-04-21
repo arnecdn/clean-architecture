@@ -1,0 +1,27 @@
+extend type Query{
+  salgsListe: [Salg]
+  salg(id: Int): Salg
+}
+
+extend type Mutation{
+    opprettSalg(input: SalgInput) : String
+    endreSalg(input: SalgInput) : String
+    slettSalg(id: ID) : String
+}
+
+input SalgInput{
+  id: ID
+  antall: Int
+  selger: ID
+  kunde: ID
+  produkt: ID
+}
+
+type Salg{
+  id: ID
+  antall: Int
+  totalPris: Float
+  selger: Ansatt
+  kunde: Kunde
+  produkt: Produkt
+}

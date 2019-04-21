@@ -1,0 +1,13 @@
+extend type Query{
+  kunder: [Kunde]
+  kunde(id : Int) : Kunde
+}
+
+extend type Mutation{
+}
+
+
+type Kunde{
+  id: ID,
+  navn: String
+}

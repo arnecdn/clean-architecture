@@ -1,0 +1,13 @@
+extend type Query{
+  selgere: [Ansatt]
+  selger(id : Int) : Ansatt
+}
+
+extend type Mutation{
+}
+
+
+type Ansatt{
+  id: ID,
+  navn: String
+}

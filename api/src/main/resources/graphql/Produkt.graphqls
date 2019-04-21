@@ -1,0 +1,11 @@
+extend type Query{
+  produkter: [Produkt]
+  produkt(id : Int) : Produkt
+}
+
+
+type Produkt{
+  id: ID,
+  beskrivelse: String,
+  pris: Float
+}
