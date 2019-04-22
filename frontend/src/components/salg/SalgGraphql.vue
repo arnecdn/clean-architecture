@@ -79,6 +79,91 @@
 
   import gpl from 'graphql-tag'
 
+  let GRAPHQL_HENT_ALLE_SALG = gpl`
+  query{
+    salgsListe {
+      id
+      antall
+      totalPris
+      kunde {
+        id
+        navn
+      }
+      selger {
+        id
+        navn
+      }
+      produkt {
+        id
+        pris
+        beskrivelse
+      }
+    }
+  }`;
+
+  let GRAPHQL_HENT_ALLE_SELGERE = gpl`
+  query{
+    selgere {
+      id
+      navn
+    }
+  }`;
+
+  let GRAPHQL_HENT_ALLE_KUNDER = gpl`
+  query{
+    kunder {
+      id
+      navn
+    }
+  }`;
+
+  let GRAPHQL_HENT_ALLE_PRODUKTER = gpl`
+  query{
+    produkter {
+      id
+      beskrivelse
+      pris
+    }
+  }`;
+
+  let GRAPHQL_HENT_SALG = gpl`
+  query HentSalg($salgsId: Int){
+    salg(id: $salgsId) {
+      id
+      antall
+      totalPris
+      kunde {
+        id
+        navn
+      }
+      selger {
+        id
+        navn
+      }
+      produkt {
+        id
+        pris
+        beskrivelse
+      }
+    }
+  }`;
+
+  let GRAPHQL_OPPRETT_SALG = gpl`
+  mutation OpprettSalg($input: SalgInput){
+    opprettSalg(input: $input)
+  }`;
+
+
+  let GRAPHQL_ENDRE_SALG = gpl`
+  mutation EndreSalg($input: SalgInput){
+    endreSalg(input: $input)
+  }`;
+
+
+  let GRAPHQL_SLETT_SALG = gpl`
+  mutation SlettSalg($id: ID){
+    slettSalg(id: $id)
+  }`;
 
   export default {
 
@@ -195,90 +280,5 @@
   }
 
 
-  let GRAPHQL_HENT_ALLE_SALG = gpl`
-  query{
-    salgsListe {
-      id
-      antall
-      totalPris
-      kunde {
-        id
-        navn
-      }
-      selger {
-        id
-        navn
-      }
-      produkt {
-        id
-        pris
-        beskrivelse
-      }
-    }
-  }`;
-
-  let GRAPHQL_HENT_ALLE_SELGERE = gpl`
-  query{
-    selgere {
-      id
-      navn
-    }
-  }`;
-
-  let GRAPHQL_HENT_ALLE_KUNDER = gpl`
-  query{
-    kunder {
-      id
-      navn
-    }
-  }`;
-
-  let GRAPHQL_HENT_ALLE_PRODUKTER = gpl`
-  query{
-    produkter {
-      id
-      beskrivelse
-      pris
-    }
-  }`;
-
-  let GRAPHQL_HENT_SALG = gpl`
-  query HentSalg($salgsId: Int){
-    salg(id: $salgsId) {
-      id
-      antall
-      totalPris
-      kunde {
-        id
-        navn
-      }
-      selger {
-        id
-        navn
-      }
-      produkt {
-        id
-        pris
-        beskrivelse
-      }
-    }
-  }`;
-
-  let GRAPHQL_OPPRETT_SALG = gpl`
-  mutation OpprettSalg($input: SalgInput){
-    opprettSalg(input: $input)
-  }`;
-
-
-  let GRAPHQL_ENDRE_SALG = gpl`
-  mutation EndreSalg($input: SalgInput){
-    endreSalg(input: $input)
-  }`;
-
-
-  let GRAPHQL_SLETT_SALG = gpl`
-  mutation SlettSalg($id: ID){
-    slettSalg(id: $id)
-  }`;
 
 </script>
