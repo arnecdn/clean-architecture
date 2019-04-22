@@ -14,13 +14,13 @@ open class SalgMutationResolver() : GraphQLMutationResolver {
     @Autowired
     lateinit var salgCommandRepository: SalgCommandRepository
 
-    fun opprettSalg(opprettSalgView: OpprettSalgView) : String{
-        OpprettSalgImpl(salgCommandRepository).opprett(opprettSalgView.toOpprettSalgDto())
+    fun opprettSalg(input: OpprettSalgView) : String{
+        OpprettSalgImpl(salgCommandRepository).opprett(input.toOpprettSalgDto())
         return "ok"
     }
 
-    fun endreSalg(opprettSalgView: OpprettSalgView) : String{
-        EndreSalgImpl(salgCommandRepository).endre(EndreSalgDto(id = opprettSalgView.id, antall = opprettSalgView.antall, ansattId = opprettSalgView.selger, kundeId = opprettSalgView.kunde, produktId = opprettSalgView.produkt))
+    fun endreSalg(input: OpprettSalgView) : String{
+        EndreSalgImpl(salgCommandRepository).endre(EndreSalgDto(id = input.id, antall = input.antall, ansattId = input.selger, kundeId = input.kunde, produktId = input.produkt))
         return "ok"
     }
 

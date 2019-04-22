@@ -79,6 +79,122 @@
 
   import gpl from 'graphql-tag'
 
+
+  export default {
+
+    data() {
+      return {
+        selgere: [],
+        kunder: [],
+        produkter: [],
+        salgsListe: [],
+        melding: "",
+        salgTilLagring: {
+          id: '',
+          produkt: '',
+          antall: '',
+          selger: '',
+          kunde: ''
+        }
+      }
+    },
+    methods: {
+
+      tømFelter() {
+        this.salgTilLagring.id = ''
+        this.salgTilLagring.antall = '',
+          this.salgTilLagring.kunde = '',
+          this.salgTilLagring.selger = '',
+          this.salgTilLagring.produkt = ''
+      },
+      lagreSalg(id) {
+        if (this.salgTilLagring.id == '') {
+          return
+        }
+
+        const input = {
+          id: this.salgTilLagring.id,
+          antall: this.salgTilLagring.antall,
+          selger: this.salgTilLagring.selger.id,
+          kunde: this.salgTilLagring.kunde.id,
+          produkt: this.salgTilLagring.produkt.id
+        }
+
+        this.$apollo.mutate({
+            mutation: GRAPHQL_ENDRE_SALG,
+            variables: { input }
+          }
+        ).then(response => (console.log(response)))
+
+        tømFelter()
+        this.$apollo.queries.salgsListe.refetch()
+      },
+      opprettSalg() {
+        if (!this.salgTilLagring.kunde && !this.salgTilLagring.produkt && !this.salgTilLagring.selger && !this.salgTilLagring.antall) {
+          return
+        }
+
+        let input = {
+          produkt: this.salgTilLagring.produkt.id,
+          antall: this.salgTilLagring.antall,
+          selger: this.salgTilLagring.selger.id,
+          kunde: this.salgTilLagring.kunde.id
+        }
+
+        this.$apollo.mutate({
+            mutation: GRAPHQL_OPPRETT_SALG,
+            variables: { input }
+          }
+        ).then(response => (console.log(response)))
+
+        tømFelter()
+        this.$apollo.queries.salgsListe.refetch()
+      },
+      slettSalg(id) {
+        const salgsId = id
+
+        this.$apollo.mutate({
+            mutation: GRAPHQL_SLETT_SALG,
+            variables: { salgsId }
+          }
+        ).then(response => (console.log(response)))
+
+        tømFelter()
+        this.$apollo.queries.salgsListe.refetch()
+      },
+      hentSalg(id) {
+        const salgsId = id
+        this.$apollo.query({
+            query: GRAPHQL_HENT_SALG,
+            variables: { salgsId }
+          }
+        ).then(response => (this.salgTilLagring = response.data.salg))
+      },
+    },
+    mounted() {
+      console.log('Henter alle på nytt')
+      this.$apollo.queries.salgsListe.refetch()
+      this.$apollo.queries.selgere.refetch()
+      this.$apollo.queries.kunder.refetch()
+      this.$apollo.queries.produkter.refetch()
+    },
+    apollo: {
+      salgsListe: {
+        query: GRAPHQL_HENT_ALLE_SALG
+      },
+      selgere: {
+        query: GRAPHQL_HENT_ALLE_SELGERE
+      },
+      kunder: {
+        query: GRAPHQL_HENT_ALLE_KUNDER
+      },
+      produkter: {
+        query: GRAPHQL_HENT_ALLE_PRODUKTER
+      }
+    }
+  }
+
+
   let GRAPHQL_HENT_ALLE_SALG = gpl`
   query{
     salgsListe {
@@ -127,8 +243,8 @@
   }`;
 
   let GRAPHQL_HENT_SALG = gpl`
-  query HentSalg($id: ID){
-    salg(id: $id) {
+  query HentSalg($salgsId: Int){
+    salg(id: $salgsId) {
       id
       antall
       totalPris
@@ -148,97 +264,21 @@
     }
   }`;
 
-  export default {
-
-    data() {
-      return {
-        selgere: [],
-        kunder: [],
-        produkter: [],
-        salgsListe: [],
-        melding: "",
-        salgTilLagring: {
-          id: '',
-          produkt: '',
-          antall: '',
-          selger: '',
-          kunde: ''
-        }
-      }
-    },
-    methods: {
-
-      tømFelter() {
-        this.salgTilLagring.id = ''
-        this.salgTilLagring.antall = '',
-          this.salgTilLagring.kunde = '',
-          this.salgTilLagring.selger = '',
-          this.salgTilLagring.produkt = ''
-      },
-      lagreSalg(id) {
-        if (this.salgTilLagring.id == '') {
-          return
-        }
-
-        let oppdatertSalg = {
-          produkt: this.salgTilLagring.produkt.id,
-          antall: this.salgTilLagring.antall,
-          selger: this.salgTilLagring.selger.id,
-          kunde: this.salgTilLagring.kunde.id
-        }
-
-        //klient kall
-
-      },
-      opprettSalg() {
-
-        if (!this.salgTilLagring.kunde && !this.salgTilLagring.produkt && !this.salgTilLagring.selger && !this.salgTilLagring.antall) {
-          return
-        }
-
-        let nyttSalg = {
-          produkt: this.salgTilLagring.produkt.id,
-          antall: this.salgTilLagring.antall,
-          selger: this.salgTilLagring.selger.id,
-          kunde: this.salgTilLagring.kunde.id
-        }
+  let GRAPHQL_OPPRETT_SALG = gpl`
+  mutation OpprettSalg($input: SalgInput){
+    opprettSalg(input: $input)
+  }`;
 
 
-        //klient kall
+  let GRAPHQL_ENDRE_SALG = gpl`
+  mutation EndreSalg($input: SalgInput){
+    endreSalg(input: $input)
+  }`;
 
-      },
-      slettSalg(id) {
-        //klient kall
-      },
-      hentSalg(id) {
 
-      },
+  let GRAPHQL_SLETT_SALG = gpl`
+  mutation SlettSalg($id: ID){
+    slettSalg(id: $id)
+  }`;
 
-    },
-
-    mounted() {
-
-    },
-    apollo: {
-      salgsListe: {
-        query: GRAPHQL_HENT_ALLE_SALG
-
-      },
-      selgere : {
-        query: GRAPHQL_HENT_ALLE_SELGERE
-      },
-      kunder: {
-        query: GRAPHQL_HENT_ALLE_KUNDER
-      },
-      produkter: {
-        query: GRAPHQL_HENT_ALLE_PRODUKTER
-      }/*,
-      salgTilLagring : {
-        query: GRAPHQL_HENT_SALG,
-        variables: {
-          id: this.salgTilLagring.id
-        }
-      }*/
-    }
-  }
 </script>
