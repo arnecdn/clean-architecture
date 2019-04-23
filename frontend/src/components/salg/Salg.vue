@@ -223,7 +223,7 @@
       },
       hentAlleSelgere() {
 
-        return axios.get('/api/ansatt', {},
+        return axios.get('/api/selger', {},
           {
             headers: {
               'Content-type': 'application/json',

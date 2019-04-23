@@ -1,11 +1,11 @@
 package no.nilsen.cleana.persistence.salg
 
 import no.nilsen.cleana.application.salg.query.SalgQueryRepository
-import no.nilsen.cleana.domain.ansatt.Ansatt
+import no.nilsen.cleana.domain.selger.Selger
 import no.nilsen.cleana.domain.kunde.Kunde
 import no.nilsen.cleana.domain.produkt.Produkt
 import no.nilsen.cleana.domain.salg.Salg
-import no.nilsen.cleana.persistence.ansatt.AnsattCrudRepositoryH2
+import no.nilsen.cleana.persistence.selger.SelgerCrudRepositoryH2
 import no.nilsen.cleana.persistence.kunde.KundeCrudRepositoryH2
 import no.nilsen.cleana.persistence.produkt.ProduktCrudRepositoryH2
 import org.springframework.beans.factory.annotation.Autowired
@@ -48,7 +48,7 @@ open class SalgQueryRepositoryH2Impl : SalgQueryRepository {
         }
 
         val kundeSalg = eksisterendeSalg.map { a -> Kunde(id = a.id, navn = a.navn) }.get()
-        val selger = ansattRepo.findById(salg.selger).map { a -> Ansatt(id = a.id, navn = a.navn) }.get()
+        val selger = selgerRepo.findById(salg.selger).map { a -> Selger(id = a.id, navn = a.navn) }.get()
         val produkt = produktRepo.findById(salg.produkt).map { p -> Produkt(id = p.id, beskrivelse = p.beskrivelse, pris = p.pris) }.get()
 
         return Salg(salg.id, salg.antall.toLong(), selger, kundeSalg, produkt)
@@ -63,7 +63,7 @@ open class SalgQueryRepositoryH2Impl : SalgQueryRepository {
     lateinit var kundeRepo: KundeCrudRepositoryH2
 
     @Autowired
-    lateinit var ansattRepo: AnsattCrudRepositoryH2
+    lateinit var selgerRepo: SelgerCrudRepositoryH2
 
     @Autowired
     lateinit var produktRepo: ProduktCrudRepositoryH2

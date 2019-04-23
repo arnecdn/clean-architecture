@@ -4,7 +4,7 @@ import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.lessThanOrEqualTo
 import no.nilsen.cleana.persistence.PersistenceConfig
-import no.nilsen.cleana.persistence.ansatt.AnsattEntitet
+import no.nilsen.cleana.persistence.selger.SelgerEntitet
 import no.nilsen.cleana.persistence.kunde.KundeEntitet
 import no.nilsen.cleana.persistence.produkt.ProduktEntitet
 import org.junit.jupiter.api.BeforeEach
@@ -33,7 +33,7 @@ open class SalgQueryRepositoryH2ImplTest {
     @BeforeEach
     fun førTest() {
         salgRepo.kundeRepo.save(KundeEntitet(navn = "Kunde Kundesen"))
-        salgRepo.ansattRepo.save(AnsattEntitet(navn = "Selger Salgsen"))
+        salgRepo.selgerRepo.save(SelgerEntitet(navn = "Selger Salgsen"))
         salgRepo.produktRepo.save(ProduktEntitet(beskrivelse = "Salgsprodukt", pris = BigDecimal.TEN))
         salgRepo.salgRepo.save(SalgEntitet(antall = 2, totalPris = BigDecimal.TEN, selger = 1, kunde = 1, produkt = 1))
     }

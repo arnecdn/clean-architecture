@@ -2,7 +2,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Selger from './components/ansatt/Selger.vue';
+import Selger from './components/selger/Selger.vue';
 import Kunde from './components/kunde/Kunde.vue';
 import Produkt from './components/produkt/Produkt.vue';
 import Salg from './components/salg/Salg.vue';

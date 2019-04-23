@@ -13,9 +13,9 @@ import org.junit.jupiter.api.TestInstance
 import java.math.BigDecimal
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class HenAlletSalgTest {
+class HentSalgPrSelgerTest {
     val repo = SalgQueryRepositoryMap()
-    val henSalg = HentAlleSalgImpl(repo)
+    val henSalg = HentSalgPrAnsattImpl(repo)
 
     @BeforeAll
     fun før() {
@@ -32,10 +32,11 @@ class HenAlletSalgTest {
         repo.opprett(Salg(antall = 10, selger = chewebacca, kunde = willWheaton, produkt = laserPistol))
     }
 
+
     @Test
-    fun skalHenteAlleSalg() {
-        val alle = henSalg.hentAlle()
-        assertThat(alle, hasSize(equalTo(4)))
+    fun skalHenteEnkeltSalgForAnsatt() {
+        val ansattSalg = henSalg.hentSalgPerAnsatt(1)
+        assertThat(ansattSalg, hasSize(equalTo(2)))
     }
 
 

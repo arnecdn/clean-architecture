@@ -1,7 +1,7 @@
 package no.nilsen.cleana.api.salg
 
 import no.nilsen.cleana.api.BaseController
-import no.nilsen.cleana.api.ansatt.HentAnsattView
+import no.nilsen.cleana.api.selger.HentSelgerView
 import no.nilsen.cleana.api.kunde.HentKundeView
 import no.nilsen.cleana.api.produkt.HentProduktView
 import no.nilsen.cleana.application.salg.command.*
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 open class SalgController : BaseController() {
-    fun SalgDto.toHentSalgView(): HentSalgView = HentSalgView(this.id, this.antall, this.totalPris, HentAnsattView(this.selger), HentKundeView(this.kunde), HentProduktView(this.produktQuery))
+    fun SalgDto.toHentSalgView(): HentSalgView = HentSalgView(this.id, this.antall, this.totalPris, HentSelgerView(this.selger), HentKundeView(this.kunde), HentProduktView(this.produktQuery))
     fun OpprettSalgView.toOpprettSalgDto(): OpprettSalgDto = OpprettSalgDto(antall = this.antall, ansattId = this.selger, kundeId = this.kunde, produktId = this.produkt)
 
     @Autowired
