@@ -127,8 +127,8 @@
   }`;
 
   let GRAPHQL_HENT_SALG = gpl`
-  query HentSalg($salgsId: Int){
-    salg(id: $salgsId) {
+  query HentSalg($id: Int){
+    salg(id: $id) {
       id
       antall
       totalPris
@@ -185,13 +185,14 @@
     },
     methods: {
 
-      tømFelter() {
+      toemFelter() {
         this.salgTilLagring.id = ''
         this.salgTilLagring.antall = '',
-          this.salgTilLagring.kunde = '',
-          this.salgTilLagring.selger = '',
-          this.salgTilLagring.produkt = ''
+        this.salgTilLagring.kunde = '',
+        this.salgTilLagring.selger = '',
+        this.salgTilLagring.produkt = ''
       },
+
       lagreSalg(id) {
         if (this.salgTilLagring.id == '') {
           return
@@ -211,7 +212,6 @@
           }
         ).then(response => (console.log(response)))
 
-        tømFelter()
         this.$apollo.queries.salgsListe.refetch()
       },
       opprettSalg() {
@@ -232,29 +232,27 @@
           }
         ).then(response => (console.log(response)))
 
-        tømFelter()
         this.$apollo.queries.salgsListe.refetch()
       },
-      slettSalg(id) {
-        const salgsId = id
+      slettSalg(salgId) {
+        const id = salgId
 
         this.$apollo.mutate({
             mutation: GRAPHQL_SLETT_SALG,
-            variables: { salgsId }
+            variables: { id }
           }
         ).then(response => (console.log(response)))
 
-        tømFelter()
         this.$apollo.queries.salgsListe.refetch()
       },
-      hentSalg(id) {
-        const salgsId = id
+      hentSalg(salgId) {
+        const id = salgId
         this.$apollo.query({
             query: GRAPHQL_HENT_SALG,
-            variables: { salgsId }
+            variables: { id }
           }
         ).then(response => (this.salgTilLagring = response.data.salg))
-      },
+      }
     },
     mounted() {
       console.log('Henter alle på nytt')
