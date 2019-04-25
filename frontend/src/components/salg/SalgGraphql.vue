@@ -210,9 +210,9 @@
             mutation: GRAPHQL_ENDRE_SALG,
             variables: { input }
           }
-        ).then(response => (console.log(response)))
+        ).then(() => this.$apollo.queries.salgsListe.refetch())
 
-        this.$apollo.queries.salgsListe.refetch()
+        this.toemFelter()
       },
       opprettSalg() {
         if (!this.salgTilLagring.kunde && !this.salgTilLagring.produkt && !this.salgTilLagring.selger && !this.salgTilLagring.antall) {
@@ -230,9 +230,9 @@
             mutation: GRAPHQL_OPPRETT_SALG,
             variables: { input }
           }
-        ).then(response => (console.log(response)))
+        ).then(() => this.$apollo.queries.salgsListe.refetch())
 
-        this.$apollo.queries.salgsListe.refetch()
+        this.toemFelter()
       },
       slettSalg(salgId) {
         const id = salgId
@@ -241,9 +241,8 @@
             mutation: GRAPHQL_SLETT_SALG,
             variables: { id }
           }
-        ).then(response => (console.log(response)))
+        ).then(() => this.$apollo.queries.salgsListe.refetch())
 
-        this.$apollo.queries.salgsListe.refetch()
       },
       hentSalg(salgId) {
         const id = salgId
@@ -251,7 +250,7 @@
             query: GRAPHQL_HENT_SALG,
             variables: { id }
           }
-        ).then(response => (this.salgTilLagring = response.data.salg))
+        ).then(response =>  {(this.salgTilLagring = response.data.salg)})
       }
     },
     mounted() {
