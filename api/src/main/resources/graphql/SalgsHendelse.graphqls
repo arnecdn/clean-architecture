@@ -1,0 +1,13 @@
+extend type Query{
+  salgsHendelser(offset: Int, antall: Int) : [SalgsHendelse]
+  salgsHendelse(id: Int): SalgsHendelse
+
+}
+
+
+type SalgsHendelse{
+  id: ID
+  salgId: Int
+  hendelse: String
+  opprettet: String
+}

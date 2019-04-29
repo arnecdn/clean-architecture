@@ -33,7 +33,6 @@ open class SalgQueryRepositoryH2Impl : SalgQueryRepository {
     override fun hentAlleSalg(): List<Salg> {
         val alleSalgsEntiteter = salgRepo.findAll().toList()
         return byggSalgsAggregat(alleSalgsEntiteter)
-
     }
 
 

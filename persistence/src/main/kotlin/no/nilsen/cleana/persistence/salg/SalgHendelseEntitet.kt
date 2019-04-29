@@ -10,7 +10,7 @@ import javax.persistence.*
 open class SalgHendelseEntitet(@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
                        open val id: Int = 0,
                                open val salgId: Int = 0,
-                               open val hendelse: String,
-                               open val opprettet: LocalDateTime) {
+                               open val hendelse: String="",
+                               open val opprettet: LocalDateTime= LocalDateTime.now()) {
 
 }
