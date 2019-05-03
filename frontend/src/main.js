@@ -8,9 +8,9 @@ import Produkt from './components/produkt/Produkt.vue';
 import Salg from './components/salg/Salg.vue';
 import SalgGraphql from './components/salg/SalgGraphql.vue';
 
-import {ApolloClient} from 'apollo-client'
-import {HttpLink} from 'apollo-link-http'
-import {InMemoryCache} from 'apollo-cache-inmemory'
+import { ApolloClient } from 'apollo-client'
+import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 import VueApollo from 'vue-apollo'
 
 
@@ -71,19 +71,61 @@ new Vue({
   provide: apolloProvider.provide(),
   router,
   template: `
-    <div>
-      <nav>
-        <div >
-          <ul class="navbar-nav">            
-            <router-link to="/selger" class="nav-link">Selger</router-link>
-            <router-link to="/kunde" class="nav-link">Kunde</router-link>
-            <router-link to="/produkt" class="nav-link">Produkt</router-link>
-            <router-link to="/salg" class="nav-link">Salg</router-link>
-            <router-link to="/salg_graphql" class="nav-link">SalgGraphql</router-link>
-          </ul>
-        </div>
-      </nav>
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+  <div class="w3-col s3">
+            <router-link to="/selger" class="w3-button w3-block w3-black"" >Selger</router-link>
+  </div>
+  <div class="w3-col s3">
+            <router-link to="/kunde" class="w3-button w3-block w3-black"">Kunde</router-link>
+  </div>
+  <div class="w3-col s3">
+            <router-link to="/produkt" class="w3-button w3-block w3-black"">Produkt</router-link>
+  </div>  
+  <div class="w3-col s3">
+            <router-link to="/salg_graphql" class="w3-button w3-block w3-black"">Salg</router-link>
+  </div>
+
+  </div>
       <router-view class="view"></router-view>
-    </div>
+
+  </div>
+<!-- Header with image -->
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small">
+    <span class="w3-tag">Open from 6am to 5pm</span>
+  </div>
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:90px">the<br>Cafe</span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-white">15 Adr street, 5015</span>
+  </div>
+</header>
+
+<!-- Footer -->
+<footer class="w3-center w3-light-grey w3-padding-48 w3-large">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+
+<script>
+  // Tabbed Menu
+  function openMenu(evt, menuName) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("menu");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < x.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
+    }
+    document.getElementById(menuName).style.display = "block";
+    evt.currentTarget.firstElementChild.className += " w3-dark-grey";
+  }
+  document.getElementById("myLink").click();
+</script>
+
   `
 }).$mount('#app');
+

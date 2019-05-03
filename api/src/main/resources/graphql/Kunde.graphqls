@@ -3,9 +3,6 @@ extend type Query{
   kunde(id : Int) : Kunde
 }
 
-extend type Mutation{
-}
-
 
 type Kunde{
   id: ID,

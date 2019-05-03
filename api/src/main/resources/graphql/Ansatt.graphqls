@@ -3,8 +3,6 @@ extend type Query{
   selger(id : Int) : Ansatt
 }
 
-extend type Mutation{
-}
 
 
 type Ansatt{
