@@ -1,26 +1,35 @@
 <template>
-  <div>
-    <input v-model="kundeTilLagring.navn" placeholder="Kundenavn">
-    <button v-if="kundeTilLagring.id == ''" v-on:click.stop.prevent="opprettKunde">Opprett kunde</button>
-    <button v-if="kundeTilLagring.id != ''" v-on:click.stop.prevent="lagreKunde(kundeTilLagring.id)">Lagre kunde</button>
-    <p>{{ melding }}</p>
-    <table>
-      <tr>
-        <td>Administrer</td>
-        <td>Kundenavn</td>
-      </tr>
 
-      <tr v-for="kunde in kundee">
-        <td>
-          <button v-on:click="slettKunde(kunde.id)">Slett</button>
-          <button v-on:click="hentKunde(kunde.id)">Endre</button>
-        </td>
-        <td>
-          {{kunde.navn}}
-        </td>
-      </tr>
-    </table>
+  <div>
+    <div class="w3-container" id="menu">
+      <div class="w3-content" style="max-width:700px">
+
+        <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Behandling av meny</span></h5>
+        <div class="w3-container w3-padding-48 w3-card">
+          <input v-model="kundeTilLagring.navn" placeholder="Selgernavn">
+          <button v-if="kundeTilLagring.id == ''" v-on:click.stop.prevent="opprettKunde">Opprett kunde</button>
+          <button v-if="kundeTilLagring.id != ''" v-on:click.stop.prevent="lagreKunde(kundeTilLagring.id)">Lagre kunde</button>
+          <button v-if="kundeTilLagring.id != ''" v-on:click.stop.prevent="slettKunde(kundeTilLagring.id)">Slett</button>
+
+          <button v-if="kundeTilLagring.id != ''" v-on:click.stop.prevent="tømFelter()">Tøm felter</button>
+          <p>{{ melding }}</p>
+        </div>
+        <div class="w3-container w3-padding-48 w3-card">
+          <div v-for="kunde in kunder">
+            <a class="w3-button w3-block w3-white" v-on:click="hentKunde(kunde.id)">
+
+              <div>
+                <h5>{{kunde.navn}}</h5>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!--img src="/w3images/coffeehouse2.jpg" style="width:100%;max-width:1000px;margin-top:32px;"-->
+      </div>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -31,7 +40,7 @@
     data() {
       return {
         melding: "",
-        kundee: [],
+        kunder: [],
         kundeTilLagring: {
           id: '',
           navn: ''
@@ -89,7 +98,7 @@
         axios.delete('/api/kunde/' + id, {},
           {}
         ).then(response => {
-          this.kundee = response.data
+          this.kunder = response.data
           this.hentAlle()
         })
       },
@@ -118,7 +127,7 @@
               'Content-type': 'application/json',
             }
           }
-        ).then(response => (this.kundee = response.data))
+        ).then(response => (this.kunder = response.data))
           .catch(error => {
             this.melding = "Feil. Sjekk console"
             console.log(error.response)

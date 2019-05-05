@@ -1,35 +1,7 @@
 <template>
-  <!--<div>
-    <input v-model="produktTilLagring.beskrivelse" placeholder="Beskrivelse">
-    <input v-model="produktTilLagring.pris" placeholder="Pris">
-    <button v-if="produktTilLagring.id == ''" v-on:click.stop.prevent="opprettProdukt">Opprett produkt</button>
-    <button v-if="produktTilLagring.id != ''" v-on:click.stop.prevent="lagreProdukt(produktTilLagring.id)">Lagre produkt</button>
 
-    <p>{{ melding }}</p>
-    <table>
-      <tr>
-        <td>Administrer</td>
-        <td>Beskrivelse</td>
-        <td>Pris</td>
-      </tr>
-
-      <tr v-for="produkt in produkter">
-        <td>
-          <button v-on:click="slettProdukt(produkt.id)">Slett</button>
-          <button v-on:click="hentProdukt(produkt.id)">Endre</button>
-        </td>
-        <td>
-          {{produkt.beskrivelse}}
-        </td>
-        <td>
-          {{produkt.pris}}
-        </td>
-      </tr>
-    </table>
-  </div>-->
   <!-- Menu Container -->
   <div>
-
     <div class="w3-container" id="menu">
       <div class="w3-content" style="max-width:700px">
 
@@ -46,7 +18,7 @@
         </div>
         <div class="w3-container w3-padding-48 w3-card">
           <div v-for="produkt in produkter">
-            <a v-on:click="hentProdukt(produkt.id)">
+            <a class="w3-button w3-block w3-white" v-on:click="hentProdukt(produkt.id)">
 
               <div>
                 <h5>Produkt: {{produkt.beskrivelse}}</h5>

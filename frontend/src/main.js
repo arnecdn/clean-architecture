@@ -71,6 +71,7 @@ new Vue({
   provide: apolloProvider.provide(),
   router,
   template: `
+<div>
 <div class="w3-top">
   <div class="w3-row w3-padding w3-black">
   <div class="w3-col s3">
@@ -96,7 +97,7 @@ new Vue({
     <span class="w3-tag">Open from 6am to 5pm</span>
   </div>
   <div class="w3-display-middle w3-center">
-    <span class="w3-text-white" style="font-size:90px">the<br>Cafe</span>
+    <span class="w3-text-white" style="font-size:90px">Butikken</span>
   </div>
   <div class="w3-display-bottomright w3-center w3-padding-large">
     <span class="w3-text-white">15 Adr street, 5015</span>
@@ -107,24 +108,7 @@ new Vue({
 <footer class="w3-center w3-light-grey w3-padding-48 w3-large">
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
-
-<script>
-  // Tabbed Menu
-  function openMenu(evt, menuName) {
-    var i, x, tablinks;
-    x = document.getElementsByClassName("menu");
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
-    }
-    document.getElementById(menuName).style.display = "block";
-    evt.currentTarget.firstElementChild.className += " w3-dark-grey";
-  }
-  document.getElementById("myLink").click();
-</script>
+</div>
 
   `
 }).$mount('#app');

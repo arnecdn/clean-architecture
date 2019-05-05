@@ -1,26 +1,34 @@
 <template>
   <div>
-    <input v-model="selgerTilLagring.navn" placeholder="Selgernavn">
-    <button v-if="selgerTilLagring.id == ''" v-on:click.stop.prevent="opprettSelger">Opprett selger</button>
-    <button v-if="selgerTilLagring.id != ''" v-on:click.stop.prevent="lagreSelger(selgerTilLagring.id)">Lagre selger</button>
+    <div class="w3-container" id="menu">
+      <div class="w3-content" style="max-width:700px">
 
-    <p>{{ melding }}</p>
-    <table>
-      <tr>
-        <td>Administrer</td>
-        <td>Selger navn</td>
-      </tr>
-      <tr v-for="selger in selgere">
-        <td>
-          <button v-on:click="slettSelger(selger.id)">Slett</button>
-          <button v-on:click="hentAnsatt(selger.id)">Endre</button>
-        </td>
-        <td>
-          {{selger.navn}}
-        </td>
-      </tr>
-    </table>
+        <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Behandling av meny</span></h5>
+        <div class="w3-container w3-padding-48 w3-card">
+          <input v-model="selgerTilLagring.navn" placeholder="Selgernavn">
+          <button v-if="selgerTilLagring.id == ''" v-on:click.stop.prevent="opprettSelger">Opprett selger</button>
+          <button v-if="selgerTilLagring.id != ''" v-on:click.stop.prevent="lagreSelger(selgerTilLagring.id)">Lagre selger</button>
+          <button v-if="selgerTilLagring.id != ''" v-on:click.stop.prevent="slettSelger(selgerTilLagring.id)">Slett</button>
+
+          <button v-if="selgerTilLagring.id != ''" v-on:click.stop.prevent="tømFelter()">Tøm felter</button>
+          <p>{{ melding }}</p>
+        </div>
+        <div class="w3-container w3-padding-48 w3-card">
+          <div v-for="selger in selgere">
+            <a class="w3-button w3-block w3-white" v-on:click="hentAnsatt(selger.id)">
+
+              <div>
+                <h5>{{selger.navn}}</h5>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!--img src="/w3images/coffeehouse2.jpg" style="width:100%;max-width:1000px;margin-top:32px;"-->
+      </div>
+    </div>
   </div>
+
 </template>
 
 <script>
