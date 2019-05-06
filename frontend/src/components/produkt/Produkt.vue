@@ -23,7 +23,6 @@
               <div>
                 <h5>Produkt: {{produkt.beskrivelse}}</h5>
                 <p class="w3-text-grey">Pris: {{produkt.pris}}</p><br>
-
               </div>
             </a>
 

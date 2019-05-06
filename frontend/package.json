@@ -24,6 +24,7 @@
     "vue": "^2.5.3",
     "vue-apollo": "^3.0.0-beta.28",
     "vue-axios": "^2.1.4",
+    "vue-form-wizard": "^0.8.4",
     "vue-router": "^3.0.2"
   },
   "devDependencies": {

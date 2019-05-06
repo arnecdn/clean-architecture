@@ -7,12 +7,17 @@ import Kunde from './components/kunde/Kunde.vue';
 import Produkt from './components/produkt/Produkt.vue';
 import Salg from './components/salg/Salg.vue';
 import SalgGraphql from './components/salg/SalgGraphql.vue';
+import SalgGraphqlFormWizard from './components/salg/SalgGraphqlFormWizard.vue';
 
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import VueApollo from 'vue-apollo'
 
+//global registration
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+Vue.use(VueFormWizard)
 
 const httpLink = new HttpLink({
   // You should use an absolute URL here
@@ -63,6 +68,11 @@ const router = new VueRouter({
       path: '/salg_graphql',
       component: SalgGraphql,
       name: 'salg_graphql'
+    },
+    {
+      path: '/salg_graphql_form_wizard',
+      component: SalgGraphqlFormWizard,
+      name: 'salg_graphql_form_wizard'
     }
   ]
 });
@@ -86,7 +96,9 @@ new Vue({
   <div class="w3-col s3">
             <router-link to="/salg_graphql" class="w3-button w3-block w3-black"">Salg</router-link>
   </div>
-
+<div class="w3-col s3">
+            <router-link to="/salg_graphql_form_wizard" class="w3-button w3-block w3-black"">Salg</router-link>
+  </div>
   </div>
       <router-view class="view"></router-view>
 
