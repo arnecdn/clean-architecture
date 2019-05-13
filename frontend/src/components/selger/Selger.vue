@@ -3,7 +3,7 @@
     <div class="w3-container" id="menu">
       <div class="w3-content" style="max-width:700px">
 
-        <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Behandling av meny</span></h5>
+        <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Selger administrasjon</span></h5>
         <div class="w3-container w3-padding-48 w3-card">
           <input v-model="selgerTilLagring.navn" placeholder="Selgernavn">
           <button v-if="selgerTilLagring.id == ''" v-on:click.stop.prevent="opprettSelger">Opprett selger</button>

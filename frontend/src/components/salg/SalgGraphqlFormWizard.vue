@@ -1,6 +1,6 @@
 <template>
 
-  <div class="w3-container" id="menu">
+  <div class="w3-container" id="menu"  >
     <div class="w3-content" style="max-width:90%">
 
       <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Behandling av meny</span></h5>
@@ -81,7 +81,7 @@
       </table>
       <p>{{ melding }}</p>
     </div>
-    <div class="w3-container w3-padding-48 w3-card">
+    <div class="w3-container w3-padding-48 w3-card" style="overflow:visible">
       <table class="w3-hoverable w3-striped " width="80%">
         <tr class="w3-cell-top" align="left">
           <th>Produkt</th>
@@ -91,7 +91,8 @@
           <th>Kunde</th>
           <th>Selger</th>
         </tr>
-        <tr v-for="salg in salgsListe" class="w3-hover-opacity" v-on:click="hentSalg(salg.id)">
+        <tr v-for="salg in salgsListe" class="w3-hover-opacity" :item="salg" v-on:click="hentSalg(salg.id)">
+          <td class="w3-text-grey"><h5>{{salg.id}}</h5></td>
           <td class="w3-text-grey"><h5>{{salg.produkt.beskrivelse}}</h5></td>
           <td class="w3-text-grey">{{salg.antall}}</td>
           <td class="w3-text-grey"><h5>{{salg.produkt.pris}}</h5></td>
@@ -224,11 +225,13 @@
     },
     methods: {
       toemFelter() {
-        this.salgTilLagring.id = ''
-        this.salgTilLagring.antall = '',
-          this.salgTilLagring.kunde = '',
-          this.salgTilLagring.selger = '',
-          this.salgTilLagring.produkt = ''
+        this.salgTilLagring= {
+          id: '',
+          produkt: '',
+          antall: '',
+          selger: '',
+          kunde: ''
+        }
       },
 
       lagreSalg(id) {
@@ -279,24 +282,28 @@
             mutation: GRAPHQL_SLETT_SALG,
             variables: { id }
           }
-        ).then(() => this.$apollo.queries.salgsListe.refetch())
+        ).then(() => {
+          this.$apollo.queries.salgsListe.refetch()
+        })
 
       },
       hentSalg(salgId) {
+
+
         const id = salgId
         this.$apollo.query({
             query: GRAPHQL_HENT_SALG,
             variables: { id }
           }
         ).then(response => {
-          (this.salgTilLagring = response.data.salg)
+          this.salgTilLagring = response.data.salg
+
         })
       },
       onComplete() {
         this.opprettSalg()
         this.$refs.opprettSalgForm.reset()
       }
-
     },
     mounted() {
       console.log('Henter alle på nytt')
