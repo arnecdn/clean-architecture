@@ -5,9 +5,10 @@
 
       <h5 class="w3-center w3-padding-48"><span class="w3-tag w3-wide">Behandling av meny</span></h5>
 
-      <form-wizard @on-complete="onComplete" shape="square" title="Opprett salg" finish-button-text="Opprett salg"
+      <form-wizard @on-complete="onComplete" shape="cirlce" title="Opprett salg" finish-button-text="Opprett salg"
         ref="opprettSalgForm"
         color="#9b59b6">
+
         <tab-content title="Produkter" icon="ti-produkter">
           <table class="w3-hoverable w3-striped " width="80%">
             <tr class="w3-cell-top" align="left">
@@ -108,7 +109,7 @@
 <script>
   //local registration
   import { FormWizard, TabContent } from 'vue-form-wizard'
-  import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+
 
   import gpl from 'graphql-tag'
   //component code
