@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
-import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.math.BigDecimal
@@ -26,7 +25,6 @@ import javax.transaction.Transactional
 @Transactional
 @ContextConfiguration(classes = arrayOf(PersistenceConfig::class, KundeCommandRepositoryH2Impl::class, SelgerCommandRepositoryH2Impl::class, ProduktCommandRepositoryH2Impl::class,
         SalgCommandRepositoryH2Impl::class, SalgHendelseQueryRepositoryH2Impl::class))
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 open class SalgHendelseQueryRepositoryH2ImplTest {
     @Autowired
     lateinit var produktRepo: ProduktCommandRepositoryH2Impl
