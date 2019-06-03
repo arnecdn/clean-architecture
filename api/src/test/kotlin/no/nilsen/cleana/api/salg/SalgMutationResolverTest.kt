@@ -12,6 +12,7 @@ import no.nilsen.cleana.persistence.salg.SalgsHendelseCrudRepositoryH2
 import org.junit.jupiter.api.Assertions.*
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
@@ -20,6 +21,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.context.junit4.SpringRunner
 import java.math.BigDecimal
 
@@ -28,7 +30,7 @@ import java.math.BigDecimal
         SalgQueryResolver::class,
         SalgCommandRepositoryH2Impl::class,
         SalgQueryRepositoryH2Impl::class))
-@RunWith(SpringRunner::class)
+@ExtendWith(SpringExtension::class)
 @AutoConfigureDataJpa
 @AutoConfigureTestDatabase
 internal class SalgMutationResolverTest {

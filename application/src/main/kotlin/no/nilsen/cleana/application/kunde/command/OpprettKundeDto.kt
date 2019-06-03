@@ -1,4 +1,4 @@
 package no.nilsen.cleana.application.kunde.command
 
-class OpprettKundeDto(val navn: String) {
+data class OpprettKundeDto(val navn: String) {
 }

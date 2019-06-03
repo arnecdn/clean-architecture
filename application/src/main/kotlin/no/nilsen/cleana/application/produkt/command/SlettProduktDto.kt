@@ -1,4 +1,4 @@
 package no.nilsen.cleana.application.produkt.command
 
-class SlettProduktDto(val id: Int) {
+data class SlettProduktDto(val id: Int) {
 }
