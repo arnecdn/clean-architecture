@@ -8,9 +8,10 @@ import no.nilsen.cleana.domain.salg.Salg
 class OpprettSalgImpl(val repo: SalgCommandRepository) : OpprettSalg {
 
     override fun opprett(opprettSalgDto: OpprettSalgDto) {
-        val nySalg = Salg(antall = opprettSalgDto.antall, selger = Selger(id = opprettSalgDto.ansattId), kunde = Kunde(id = opprettSalgDto.kundeId), produkt = Produkt(id = opprettSalgDto.produktId))
-        if (nySalg.erGyldigNyttSalg) {
-            repo.opprett(nySalg)
-        }
+
+        opprettSalgDto.let { Salg( antall = opprettSalgDto.antall, selger = Selger(id = opprettSalgDto.ansattId), kunde = Kunde(id = opprettSalgDto.kundeId), produkt = Produkt(id = opprettSalgDto.produktId))}
+                .takeIf { it.erGyldigNyttSalg}
+                ?.apply {  repo.opprett(this)}
+
     }
 }

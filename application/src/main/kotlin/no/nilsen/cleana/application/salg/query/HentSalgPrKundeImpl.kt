@@ -7,9 +7,7 @@ import no.nilsen.cleana.domain.salg.Salg
 
 class HentSalgPrKundeImpl(val repo: SalgQueryRepository) : HentSalgPrKunde {
 
-    fun Salg.toHentSalgDto(): SalgDto = SalgDto(this.id, this.antall, this.totalPris(), SelgerDto(this.selger), KundeDto(this.kunde), ProduktDto(this.produkt))
-
     override fun hentSalgPerKunde(kundeId: Int): List<SalgDto> {
-        return repo.hentSalgPerKunde(kundeId).map { s -> s.toHentSalgDto() }
+        return repo.hentSalgPerKunde(kundeId).map(Salg::toHentSalgDto)
     }
 }

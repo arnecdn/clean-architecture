@@ -13,6 +13,10 @@ class Salg(val id: Int = 0, val antall: Long = 0, val selger: Selger = Selger(),
 
 
     open fun totalPris(): BigDecimal {
+        return produkt.pris ganger antall
+    }
+
+    infix fun BigDecimal.ganger (antall : Long) : BigDecimal {
         return produkt.pris.times(BigDecimal.valueOf(antall))
     }
 }

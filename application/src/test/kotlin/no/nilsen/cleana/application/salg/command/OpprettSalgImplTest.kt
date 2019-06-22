@@ -18,6 +18,15 @@ internal class OpprettSalgImplTest {
         assertTrue(opprettetSalg!!.id.equals(1))
     }
 
+    @Test
+    fun skalOppretteUgyldigSalgEnkeltSalg() {
+        val salg = OpprettSalgDto(1, 1, 1, 1)
+        opprettSalg.opprett(salg)
+
+        val opprettetSalg = repo.hent(1)
+        assertTrue(opprettetSalg!!.id.equals(1))
+    }
+
     class SalgCommandRepositoryMap : SalgCommandRepository {
         override fun endre(salg: Salg) {
             salgMap.put(salg.id, salg)
