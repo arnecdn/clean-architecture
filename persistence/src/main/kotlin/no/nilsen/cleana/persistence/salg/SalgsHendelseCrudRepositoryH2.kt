@@ -6,10 +6,10 @@ import org.springframework.data.repository.CrudRepository
 
 
 interface SalgsHendelseCrudRepositoryH2 : CrudRepository<SalgHendelseEntitet, Int> {
-    @Query(" SELECT * FROM SALG_HENDELSE WHERE id < :offset ORDER BY id DESC LIMIT :antall"
+    @Query(" SELECT * FROM SALG_HENDELSE WHERE id > :offset ORDER BY id ASC LIMIT :antall"
             , nativeQuery = true)
     fun hentSalgsHendelser(offset: Int, antall: Int): List<SalgHendelseEntitet>
 
-    @Query(" SELECT * FROM SALG_HENDELSE ORDER BY id DESC LIMIT :antall ", nativeQuery = true)
+    @Query(" SELECT * FROM SALG_HENDELSE ORDER BY id ASC LIMIT :antall ", nativeQuery = true)
     fun hentSalgsHendelser(antall: Int): List<SalgHendelseEntitet>
 }

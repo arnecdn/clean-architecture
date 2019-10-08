@@ -87,8 +87,8 @@ open class SalgHendelseQueryRepositoryH2ImplTest {
     @Test
     fun skal5og5SalgsHendelser() {
         val foerste5 = salgHendelseRepo.hent(antall = 5)
-        val andre5 = salgHendelseRepo.hent(foerste5.get(foerste5.size - 1).id, 5)
-        val tredje5 = salgHendelseRepo.hent(andre5.get(andre5.size - 1).id, 5)
+        val andre5 = salgHendelseRepo.hent(foerste5.get(0).id, 5)
+        val tredje5 = salgHendelseRepo.hent(andre5.get(0).id, 5)
 
         assertThat(foerste5.size, equalTo(5))
         assertThat(foerste5.size, equalTo(5))

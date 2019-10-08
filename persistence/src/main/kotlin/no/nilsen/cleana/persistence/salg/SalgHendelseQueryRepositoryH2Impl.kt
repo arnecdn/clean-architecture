@@ -15,9 +15,15 @@ open class SalgHendelseQueryRepositoryH2Impl : SalgsHendelseQueryRepository {
 
     override fun hent(offset: Int, antall: Int): List<SalgsHendelse> {
         if(offset== 0){
-            return salgsHendelseCrudRepositoryH2.hentSalgsHendelser(antall=antall).map { e -> SalgsHendelse(e.id, e.salgId, HendelsesType.valueOf(e.hendelse), e.opprettet) }
+            return mapAndSort(salgsHendelseCrudRepositoryH2.hentSalgsHendelser(antall = antall))
         }
-        return salgsHendelseCrudRepositoryH2.hentSalgsHendelser(offset, antall).map { e -> SalgsHendelse(e.id, e.salgId, HendelsesType.valueOf(e.hendelse), e.opprettet) }
+        return mapAndSort(salgsHendelseCrudRepositoryH2.hentSalgsHendelser(offset, antall))
+    }
+
+    private fun mapAndSort(salgsHendelser: List<SalgHendelseEntitet>): List<SalgsHendelse> {
+        return salgsHendelser
+                .map { e -> SalgsHendelse(e.id, e.salgId, HendelsesType.valueOf(e.hendelse), e.opprettet) }
+                .sortedByDescending { s -> s.id }
     }
 
 
